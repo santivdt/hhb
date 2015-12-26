@@ -1,12 +1,96 @@
-<navbar></navbar>
+<div class="container-fluid">
 
-<header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>Money</h1>
-    <p class="lead">Financial administration made easy</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+<!-- input fields to add new entries -->
+ <div class="row">
+
+    <div class="col-sm-2 col-md-2">
+    </div>
+
+
+    <div class="col-md-8">
+      <form class="form-horizontal">
+        <div class="form-group ">
+          <label>In/out</label>
+          <input type="text" class="form-control" id="inout" placeholder="In/out" >
+        </div>
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" class="form-control" id="date" placeholder="dd/mm/yyyy">
+        </div>
+        <div class="form-group">
+          <label for="amount">Amount</label>
+          <input type="date" class="form-control" id="amount" placeholder="Amount">
+        </div>
+
+
+        <div class="form-group">
+          <label for="description" class="control-label">Description</label>
+          <textarea class="form-control" id="description" placeholder="Description of expenses" rows="3" ng-model="formData.description></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <select class="form-control">
+            <option>Food</option>
+            <option>Party</option>
+            <option>Travel</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Period</label>
+          <select class="form-control">
+            <option>Monthly</option>
+            <option>Quarterly</option>
+            <option>yearly</option>
+
+          </select>
+        </div>
+        <button type="submit" class="btn" ng-click="addEntry">Add entry</button>
+
+      </form>
+    </div>
+
+
+
+
+
+
+
+    </div>
+
+
+    <div class="col-md-2">
+
+
+    </div>
+
+
   </div>
-</header>
 
 
-hoi
+
+
+  <!-- table with previous entries -->
+  <div class="row">
+
+    <div class="col-sm-2 col-md-2">
+
+    </div>
+
+
+    <div class="col-md-8">
+
+
+    </div>
+
+
+    <div class="col-md-2">
+
+
+    </div>
+
+
+  </div>
+
+</div>

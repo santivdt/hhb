@@ -3,7 +3,6 @@
 angular.module('hhbApp', [
   'hhbApp.auth',
   'hhbApp.admin',
-  'hhbApp.add',
   'hhbApp.constants',
   'ngCookies',
   'ngResource',
