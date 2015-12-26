@@ -1,19 +1,9 @@
 'use strict';
 
 angular.module('hhbApp')
-  .controller('AddCtrl', function ($scope, $http) {
+  .controller('AddCtrl', function ($scope, $http, $state) {
     $scope.formData = {};
 
-
-    // when landing on the page, get all entries and show them
-    $http.get('/api/entries')
-      .success(function(data) {
-        $scope.entries = data;
-        console.log(data);
-      })
-      .error(function(data) {
-        console.log('Error: ' + data);
-      });
 
     // when submitting the add form, send the input to the node API
     $scope.addEntry = function() {
@@ -26,7 +16,13 @@ angular.module('hhbApp')
         })
         .error(function(data) {
           console.log('Error: ' + data);
-        });
+        })
+
+      $state.go('entries');
+      console.log('state changed')
+
     };
+
+
   });
 

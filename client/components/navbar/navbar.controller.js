@@ -7,7 +7,10 @@ class NavbarController {
     'state': 'main'
   },
     {'title': 'Add',
-    'state': 'add'}];
+    'state': 'add'
+    },
+    {'title': 'Entries',
+    'state': 'entries'}];
 
   isCollapsed = true;
   //end-non-standard

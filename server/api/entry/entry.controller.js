@@ -100,3 +100,14 @@ export function destroy(req, res) {
     .then(removeEntity(res))
     .catch(handleError(res));
 }
+
+// Deletes a Entry from the DB
+export function destroyAll(req, res) {
+  Entry.remove({})
+    .then(responseWithResult(res))
+    .catch(handleError(res));
+}
+
+
+
+
