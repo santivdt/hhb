@@ -550,59 +550,59 @@ module.exports = function (grunt) {
       }
     },
 
-    injector: {
-      options: {
-
-      },
-      // Inject application script files into index.html (doesn't include bower)
-      scripts: {
-        options: {
-          transform: function(filePath) {
-            var yoClient = grunt.config.get('yeoman.client');
-            filePath = filePath.replace('/' + yoClient + '/', '');
-            filePath = filePath.replace('/.tmp/', '');
-            return '<script src="' + filePath + '"></script>';
-          },
-          sort: function(a, b) {
-            var module = /\.module\.js$/;
-            var aMod = module.test(a);
-            var bMod = module.test(b);
-            // inject *.module.js first
-            return (aMod === bMod) ? 0 : (aMod ? -1 : 1);
-          },
-          starttag: '<!-- injector:js -->',
-          endtag: '<!-- endinjector -->'
-        },
-        files: {
-          '<%= yeoman.client %>/index.html': [
-               [
-                 '.tmp/{app,components}/**/!(*.spec|*.mock).js',
-                 '!{.tmp,<%= yeoman.client %>}/app/app.js'
-               ]
-            ]
-        }
-      },
-
-      // Inject component css into index.html
-      css: {
-        options: {
-          transform: function(filePath) {
-            var yoClient = grunt.config.get('yeoman.client');
-            filePath = filePath.replace('/' + yoClient + '/', '');
-            filePath = filePath.replace('/.tmp/', '');
-            return '<link rel="stylesheet" href="' + filePath + '">';
-          },
-          starttag: '<!-- injector:css -->',
-          endtag: '<!-- endinjector -->'
-        },
-        files: {
-          '<%= yeoman.client %>/index.html': [
-            '<%= yeoman.client %>/{app,components}/**/*.css'
-          ]
-        }
-      }
-    },
-  });
+  //  injector: {
+  //    options: {
+  //
+  //    },
+  //    // Inject application script files into index.html (doesn't include bower)
+  //    scripts: {
+  //      options: {
+  //        transform: function(filePath) {
+  //          var yoClient = grunt.config.get('yeoman.client');
+  //          filePath = filePath.replace('/' + yoClient + '/', '');
+  //          filePath = filePath.replace('/.tmp/', '');
+  //          return '<script src="' + filePath + '"></script>';
+  //        },
+  //        sort: function(a, b) {
+  //          var module = /\.module\.js$/;
+  //          var aMod = module.test(a);
+  //          var bMod = module.test(b);
+  //          // inject *.module.js first
+  //          return (aMod === bMod) ? 0 : (aMod ? -1 : 1);
+  //        },
+  //        starttag: '<!-- injector:js -->',
+  //        endtag: '<!-- endinjector -->'
+  //      },
+  //      files: {
+  //        '<%= yeoman.client %>/index.html': [
+  //             [
+  //               '.tmp/{app,components}/**/!(*.spec|*.mock).js',
+  //               '!{.tmp,<%= yeoman.client %>}/app/app.js'
+  //             ]
+  //          ]
+  //      }
+  //    },
+  //
+  //    // Inject component css into index.html
+  //    css: {
+  //      options: {
+  //        transform: function(filePath) {
+  //          var yoClient = grunt.config.get('yeoman.client');
+  //          filePath = filePath.replace('/' + yoClient + '/', '');
+  //          filePath = filePath.replace('/.tmp/', '');
+  //          return '<link rel="stylesheet" href="' + filePath + '">';
+  //        },
+  //        starttag: '<!-- injector:css -->',
+  //        endtag: '<!-- endinjector -->'
+  //      },
+  //      files: {
+  //        '<%= yeoman.client %>/index.html': [
+  //          '<%= yeoman.client %>/{app,components}/**/*.css'
+  //        ]
+  //      }
+  //    }
+  //  },
+  //});
 
   // Used for delaying livereload until after server has restarted
   grunt.registerTask('wait', function () {

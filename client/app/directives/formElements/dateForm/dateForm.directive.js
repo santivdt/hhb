@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('hhbApp')
-  .directive('descriptionForm', function () {
+  .directive('dateForm', function () {
     return {
-      templateUrl: 'components/formElements/descriptionForm/descriptionForm.html',
+      templateUrl: 'app/directives/formElements/dateForm/dateForm.html',
       restrict: 'EA',
       link: function (scope, element, attrs) {
       }

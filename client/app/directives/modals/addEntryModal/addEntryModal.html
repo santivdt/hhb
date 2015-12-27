@@ -1,0 +1,26 @@
+<!-- Modal content for adding new entry -->
+
+
+<div class="modal fade" id="addEntry" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add new entry</h4>
+            </div>
+            <div class="modal-body">
+                <date-form></date-form>
+                <amount-form></amount-form>
+                <description-form></description-form>
+                <categories-menu></categories-menu>
+                <period-menu></period-menu>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="addEntry()">Add</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>

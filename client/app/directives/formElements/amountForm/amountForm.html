@@ -1,0 +1,4 @@
+<div class="form-group" ng-class="{'has-error': addForm.amount.$error.required && addForm.amount.$touched}">
+  <label for="amount">Amount</label>
+  <input type="number" class="form-control" name="amount" id="amount" placeholder="Amount" ng-model-options="{ updateOn: 'blur', debounce: { default: 500, blur: 0 } }" ng-model="formData.amount" required>
+</div>

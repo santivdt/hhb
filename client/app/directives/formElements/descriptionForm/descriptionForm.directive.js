@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('hhbApp')
-  .directive('categoriesMenu', function () {
+  .directive('descriptionForm', function () {
     return {
-      templateUrl: 'components/formElements/categoriesMenu/categoriesMenu.html',
+      templateUrl: 'app/directives/formElements/descriptionForm/descriptionForm.html',
       restrict: 'EA',
       link: function (scope, element, attrs) {
       }

@@ -10,7 +10,7 @@
     <div class="col-lg-2">
     </div>
 
-    <div class="col-lg-6">
+    <div class="col-lg-7">
 
       <form class="form-inline">
         <div class="form-group">
@@ -20,26 +20,28 @@
           </div>
         </div>
         <div class="form-group">
-          <input class="form-control" ng-model="queryDate" type="date">
+          <input class="form-control" ng-model="startDate" type="date">
         </div>
         <div class="form-group">
-          <select ng-model="orderProp" class="form-control">
-            <option value="" disabled selected hidden>Sorting options</option>
-            <option value="description">Alphabetical</option>
-            <option value="date">Oldest First</option>
-            <option value="-date">Newest first</option>
-            <option value="-amount">Highest amount</option>
-            <option value="amount">Lowest amount</option>
-
-          </select>
+          <input class="form-control" ng-model="endDate" type="date">
         </div>
+        <!--<div class="form-group">-->
+          <!--<select ng-model="orderProp" class="form-control">-->
+            <!--<option value="" disabled selected hidden>Sorting options</option>-->
+            <!--<option value="description">Alphabetical</option>-->
+            <!--<option value="date">Oldest First</option>-->
+            <!--<option value="-date">Newest first</option>-->
+            <!--<option value="-amount">Highest amount</option>-->
+            <!--<option value="amount">Lowest amount</option>-->
+
+          <!--</select>-->
+        <!--</div>-->
       </form>
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-1">
 
       <span class="pull-right">
         <button data-toggle="modal" data-target="#editColumns" type="button" class="btn btn-default">Edit columns</button>
-
       </span>
     </div>
 
@@ -86,13 +88,15 @@
       </tr>
 
 
-      <tr ng-repeat="entry in entries | filter:query | orderBy:orderProp">
+      <tr ng-repeat="entry in entries | filter: dateRangeFilter('itemDate', startDate, endDate) | orderBy:orderProp">
         <td>
           <span class="glyphicon glyphicon-minus" style="color:#f49a9a" ng-show="entry.flow == 'expense'"></span>
           <span class="glyphicon glyphicon-plus" style="color:#d2fca1" ng-show="entry.flow == 'income'"></span>
         </td>
         <td ng-show="dateCheck">
-          {{entry.date | date: 'dd-MM-yyyy'}}
+
+            {{entry.date | date: 'dd-MM-yyyy'}}
+
         </td>
         <td ng-show="descriptionCheck">
           <div ng-hide="entry.edit" ng-click="entry.edit = true">
@@ -123,6 +127,9 @@
       <span class="glyphicon glyphicon-plus"></span>
       &nbsp;Add another entry
     </button>
+    <button data-toggle="modal" data-target="#addEntry" type="button" class="btn btn-default">
+      Add entry here
+    </button>
     <button class="btn btn-danger" type="button" ng-click="deleteEntries()">
       <span class="glyphicon glyphicon-trash"></span>
       &nbsp;Delete all entries
@@ -139,13 +146,13 @@
 
 </div>
 
-</div>
 
 <!-- The Modal to Edit columns -->
+<!-- Modal content columns-->
+<!-- TODO: make directive -->
 <div class="modal fade" id="editColumns" role="dialog">
   <div class="modal-dialog">
 
-    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -184,11 +191,40 @@
             Period
           </label>
         </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="addEntry" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add new entry</h4>
+      </div>
+      <div class="modal-body">
+        <date-form></date-form>
+        <amount-form></amount-form>
+        <description-form></description-form>
+        <categories-menu></categories-menu>
+        <period-menu></period-menu>
+
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" ng-click="addEntry()">Add</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       </div>
     </div>
 
   </div>
 </div>
+
+
+
+
