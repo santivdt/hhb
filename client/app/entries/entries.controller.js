@@ -11,6 +11,7 @@ angular.module('hhbApp')
 
 
 
+      $scope.desc = 'hoi';
     // when landing on the page, get all entries and show them
     $http.get('/api/entries')
       .success(function(data) {
@@ -52,10 +53,10 @@ angular.module('hhbApp')
     };
 
     //Edit an entry inline
-    $scope.editEntry = function(id) {
-      $http.put('/api/entries/' + id)
+    $scope.editEntry = function(entry) {
+      $http.put('/api/entries/' + entry._id, entry)
         .success(function(data) {
-          console.log('edit');
+            console.log('edit');
           console.log(data);
         })
         .error(function(data) {

@@ -8,8 +8,8 @@
 
 
     <div class="col-md-8">
-      <form class="form-horizontal" name="addForm">
-        <div class="form-group">
+      <form name="addForm" class="form-horizontal">
+        <div class="form-group ">
           <label>Expense/Income?</label>
           <!--<input type="text" class="form-control" id="inout" placeholder="In/out" ng-model="formData.flow">-->
           <div class="radio">
@@ -27,13 +27,12 @@
         </div>
         <div class="form-group">
           <label for="date">Date</label>
-          <input type="date" class="form-control" id="date" placeholder="dd/mm/yyyy" ng-model="formData.date" required>
+          <input type="date" class="form-control" id="date" placeholder="dd/mm/yyyy" ng-model="formData.date">
         </div>
-        <div class="form-group" ng-class="{hasError:addForm.amount.$error.required}">
+        <div class="form-group" ng-class="{'has-error': addForm.amount.$error.required && addForm.amount.$touched}">
           <label for="amount">Amount</label>
-          <input type="number" name="amount" class="form-control" id="amount" placeholder="Amount" ng-model="formData.amount" required>
+          <input type="number" class="form-control" name="amount" id="amount" placeholder="Amount" ng-model-options="{ updateOn: 'blur', debounce: { default: 500, blur: 0 } }" ng-model="formData.amount" required>
         </div>
-
 
         <div class="form-group">
           <label for="description" class="control-label">Description</label>
