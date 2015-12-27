@@ -6,7 +6,7 @@ class MainController {
 
   constructor($http) {
     this.$http = $http;
-    this.awesomeThings = [];
+    this.awesomeThings = [{'info': 'Bijhouden', 'title': 'Ja'}];
 
     $http.get('/api/things').then(response => {
       this.awesomeThings = response.data;
