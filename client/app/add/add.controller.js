@@ -3,6 +3,7 @@
 angular.module('hhbApp')
   .controller('AddCtrl', function ($scope, $http, $state) {
     $scope.formData = {};
+    $scope.formData.flow = 'expense';
 
 
     // when submitting the add form, send the input to the node API
