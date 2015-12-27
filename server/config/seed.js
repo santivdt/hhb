@@ -10,25 +10,25 @@ import User from '../api/user/user.model';
 Thing.find({}).removeAsync()
   .then(() => {
     Thing.create({
-      name: 'Santi',
+      name: 'Keep track of everything you spend',
       info: 'Is een meisje ' +
              'Mocha, JSHint, Node Inspector, Livereload, Protractor, Jade, ' +
              'Stylus, Sass, and Less.'
     }, {
-      name: 'Server and Client integration',
+      name: 'Overview of what you spend money on',
       info: 'Built with a powerful and fun stack: MongoDB, Express, ' +
              'AngularJS, and Node.'
     }, {
-      name: 'Smart Build System',
+      name: 'Easy inline editing',
       info: 'Build system ignores `spec` files, allowing you to keep ' +
              'tests alongside code. Automatic injection of scripts and ' +
              'styles into your index.html'
     }, {
-      name: 'Modular Structure',
+      name: 'Free up to 200 entries',
       info: 'Best practice client and server structures allow for more ' +
              'code reusability and maximum scalability'
     }, {
-      name: 'Optimized Build',
+      name: 'Attractive pricing afterwards',
       info: 'Build process packs up your templates as a single JavaScript ' +
              'payload, minifies your scripts/css/images, and rewrites asset ' +
              'names for caching.'
