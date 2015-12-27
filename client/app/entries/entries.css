@@ -8,3 +8,7 @@
 }
 
 .add {background-color: palegreen}
+
+.pointer {
+  cursor: pointer;
+}
