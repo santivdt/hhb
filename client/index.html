@@ -13,7 +13,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+      <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
       <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
       <!-- endbower -->
     <!-- endbuild -->
@@ -29,6 +29,7 @@
       <link rel="stylesheet" href="app/directives/formElements/dateForm/dateForm.css">
       <link rel="stylesheet" href="app/directives/formElements/descriptionForm/descriptionForm.css">
       <link rel="stylesheet" href="app/directives/formElements/periodMenu/periodMenu.css">
+      <link rel="stylesheet" href="app/directives/modals/addEntryModal/addEntryModal.css">
       <link rel="stylesheet" href="app/entries/entries.css">
       <link rel="stylesheet" href="app/main/main.css">
       <link rel="stylesheet" href="components/footer/footer.css">
@@ -80,7 +81,7 @@
       <script src="app/dash/dash.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="app/entries/entries.controller.js"></script>
+      <script src="app/directives/modals/addEntryModal/addEntryModal.directive.js"></script>
       <script src="app/add/add.js"></script>
       <script src="app/admin/admin.controller.js"></script>
       <script src="app/account/account.js"></script>
@@ -89,10 +90,13 @@
       <script src="app/dash/dash.controller.js"></script>
       <script src="app/dash/dash.js"></script>
       <script src="app/account/settings/settings.controller.js"></script>
+      <script src="app/directives/formElements/amountForm/amountForm.directive.js"></script>
       <script src="app/directives/formElements/categoriesMenu/categoriesMenu.directive.js"></script>
+      <script src="app/directives/formElements/dateForm/dateForm.directive.js"></script>
       <script src="app/directives/formElements/descriptionForm/descriptionForm.directive.js"></script>
       <script src="app/directives/formElements/periodMenu/periodMenu.directive.js"></script>
       <script src="app/account/login/login.controller.js"></script>
+      <script src="app/entries/entries.controller.js"></script>
       <script src="app/entries/entries.js"></script>
       <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
@@ -114,9 +118,6 @@
     <!-- endbuild -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="app/directives/formElements/amountForm/amountForm.directive.js"></script>
-    <script src="app/directives/formElements/amountForm/amountForm.directive.spec.js"></script>
-    <script src="app/directives/formElements/dateForm/dateForm.directive.js"></script>
-  <script src="app/directives/formElements/dateForm/dateForm.directive.spec.js"></script>
+
   </body>
 </html>

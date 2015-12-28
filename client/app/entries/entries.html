@@ -16,133 +16,149 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
-            <input type="text" class="form-control" id="query" ng-model="query" placeholder="Search...">
+            <input type="text" class="form-control" id="query" ng-model="query" placeholder="Search description...">
           </div>
         </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+            <input type="text" class="form-control" id="query2" ng-model="query2" placeholder="Search amount">
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-lg-1">
+      <span class="pull-right">
+        <button data-toggle="modal" data-target="#editColumns" type="button" class="btn btn-default">Edit columns</button>
+      </span>
+    </div>
+
+    <div class="col-lg-2">
+
+    </div>
+
+  </div>
+
+  <br>
+  <!-- search 2 -->
+  <div class="row">
+
+    <div class="col-lg-2">
+    </div>
+
+    <div class="col-lg-7">
+
+      <form class="form-inline">
         <div class="form-group">
           <input class="form-control" ng-model="startDate" type="date">
         </div>
         <div class="form-group">
           <input class="form-control" ng-model="endDate" type="date">
         </div>
-        <!--<div class="form-group">-->
-          <!--<select ng-model="orderProp" class="form-control">-->
-            <!--<option value="" disabled selected hidden>Sorting options</option>-->
-            <!--<option value="description">Alphabetical</option>-->
-            <!--<option value="date">Oldest First</option>-->
-            <!--<option value="-date">Newest first</option>-->
-            <!--<option value="-amount">Highest amount</option>-->
-            <!--<option value="amount">Lowest amount</option>-->
-
-          <!--</select>-->
-        <!--</div>-->
       </form>
     </div>
-    <div class="col-lg-1">
 
-      <span class="pull-right">
-        <button data-toggle="modal" data-target="#editColumns" type="button" class="btn btn-default">Edit columns</button>
-      </span>
+    <div class="col-lg-1">
+    </div>
+
+    <div class="col-lg-2">
+
     </div>
 
   </div>
 
   <br>
 
-  <div class="col-lg-2">
-  </div>
+  <!-- table with previous entries -->
+  <div class="row">
 
-</div>
+    <div class="col-lg-2">
 
-<!-- table with previous entries -->
-
-<div class="row">
-
-  <div class="col-sm-2 col-md-2">
-
-  </div>
+    </div>
 
 
-  <div class="col-md-8">
+    <div class="col-lg-8">
 
-    <table class="table">
-      <tr>
-        <th></th>
-        <th ng-click="orderProp === 'date' ? orderProp = '-date' : orderProp = 'date'" ng-show="dateCheck">
-          <span class="pointer">Date</span>
-          <span ng-show="orderProp == 'date'" class="glyphicon glyphicon-arrow-down"></span>
-          <span ng-show="orderProp == '-date'" class="glyphicon glyphicon-arrow-up"></span>
-        </th>
-        <th ng-click="orderProp === 'description' ? orderProp = '-description' : orderProp = 'description'" ng-show="descriptionCheck">
-          <span class="pointer">Description</span>
-        </th>
-        <th ng-click="orderProp === 'amount' ? orderProp = '-amount' : orderProp = 'amount'" ng-show="amountCheck">
-          <span class="pointer">Amount</span>
-        </th>
-        <th ng-click="orderProp === 'category' ? orderProp = '-category' : orderProp = 'category'" ng-show="categoryCheck">
-          <span class="pointer">Category</span>
-        </th>
-        <th ng-show="periodCheck" ng-click="orderProp === 'period' ? orderProp = '-period' : orderProp = 'period'">Period
-        </th>
-        <th></th>
-      </tr>
+      <table class="table">
+        <tr>
+          <th></th>
+          <th ng-click="orderProp === 'date' ? orderProp = '-date' : orderProp = 'date'" ng-show="dateCheck">
+            <span class="pointer">Date</span>
+            <span ng-show="orderProp == 'date'" class="glyphicon glyphicon-arrow-down"></span>
+            <span ng-show="orderProp == '-date'" class="glyphicon glyphicon-arrow-up"></span>
+          </th>
+          <th ng-click="orderProp === 'description' ? orderProp = '-description' : orderProp = 'description'" ng-show="descriptionCheck">
+            <span class="pointer">Description</span>
+          </th>
+          <th ng-click="orderProp === 'amount' ? orderProp = '-amount' : orderProp = 'amount'" ng-show="amountCheck">
+            <span class="pointer">Amount</span>
+          </th>
+          <th ng-click="orderProp === 'category' ? orderProp = '-category' : orderProp = 'category'" ng-show="categoryCheck">
+            <span class="pointer">Category</span>
+          </th>
+          <th ng-show="periodCheck" ng-click="orderProp === 'period' ? orderProp = '-period' : orderProp = 'period'">Period
+          </th>
+          <th></th>
+        </tr>
 
 
-      <tr ng-repeat="entry in entries | filter: dateRangeFilter('itemDate', startDate, endDate) | orderBy:orderProp">
-        <td>
-          <span class="glyphicon glyphicon-minus" style="color:#f49a9a" ng-show="entry.flow == 'expense'"></span>
-          <span class="glyphicon glyphicon-plus" style="color:#d2fca1" ng-show="entry.flow == 'income'"></span>
-        </td>
-        <td ng-show="dateCheck">
+        <tr ng-repeat="entry in entries | filter:{description: query, amount: query2} | orderBy:orderProp">
+          <td ng-show='flowCheck'>
+            <span class="glyphicon glyphicon-minus" style="color:#f49a9a" ng-show="entry.flow == 'expense'"></span>
+            <span class="glyphicon glyphicon-plus" style="color:#d2fca1" ng-show="entry.flow == 'income'"></span>
+          </td>
+          <td ng-show="dateCheck">
 
             {{entry.date | date: 'dd-MM-yyyy'}}
 
-        </td>
-        <td ng-show="descriptionCheck">
-          <div ng-hide="entry.edit" ng-click="entry.edit = true">
-            {{entry.description}}
-          </div>
-          <input type="text" ng-show="entry.edit" ng-blur="editEntry(entry); entry.edit = false" ng-model="entry.description"/>
-        </td>
-        <td ng-show="amountCheck">
-          {{entry.amount}}
-        </td>
-        <td ng-show="categoryCheck">
-          {{entry.category}}
+          </td>
+          <td ng-show="descriptionCheck">
+            <div ng-hide="entry.edit" ng-click="entry.edit = true">
+              {{entry.description}}
+            </div>
+            <input type="text" ng-show="entry.edit" ng-blur="editEntry(entry); entry.edit = false" ng-model="entry.description"/>
+          </td>
+          <td ng-show="amountCheck">
+            {{entry.amount}}
+          </td>
+          <td ng-show="categoryCheck">
+            {{entry.category}}
 
-        </td>
-        <td ng-show="periodCheck">
-          {{entry.period}}
-        </td>
-        <td>
-          <span class="glyphicon  glyphicon-pencil" ng-click="editEntry(entry._id)"></span>
-          <span class="glyphicon  glyphicon-trash" ng-click="deleteEntry(entry._id)"></span>
+          </td>
+          <td ng-show="periodCheck">
+            {{entry.period}}
+          </td>
+          <td>
+            <span class="glyphicon  glyphicon-pencil" ng-click="editEntry(entry._id)"></span>
+            <span class="glyphicon  glyphicon-trash" ng-click="deleteEntry(entry._id)"></span>
 
 
-        </td>
-      </tr>
-    </table>
+          </td>
+        </tr>
+      </table>
 
-    <button class="btn add" type="button" ui-sref="add">
-      <span class="glyphicon glyphicon-plus"></span>
-      &nbsp;Add another entry
-    </button>
-    <button data-toggle="modal" data-target="#addEntry" type="button" class="btn btn-default">
-      Add entry here
-    </button>
-    <button class="btn btn-danger" type="button" ng-click="deleteEntries()">
-      <span class="glyphicon glyphicon-trash"></span>
-      &nbsp;Delete all entries
-    </button>
+      <button class="btn add" type="button" ui-sref="add">
+        <span class="glyphicon glyphicon-plus"></span>
+        &nbsp;Add another entry
+      </button>
+      <button data-toggle="modal" data-target="#addEntry" type="button" class="btn btn-default">
+        Add entry here
+      </button>
+      <button class="btn btn-danger" type="button" ng-click="deleteEntries()">
+        <span class="glyphicon glyphicon-trash"></span>
+        &nbsp;Delete all entries
+      </button>
+
+    </div>
+
+
+    <div class="col-lg-2">
+
+    </div>
+
 
   </div>
-
-
-  <div class="col-md-2">
-
-
-  </div>
-
 
 </div>
 
@@ -161,6 +177,12 @@
       <div class="modal-body">
         <p>Which columns do you want to display
         </p>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="" ng-model="flowCheck">
+            Flow
+          </label>
+        </div>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="" ng-model="dateCheck">
@@ -190,6 +212,10 @@
             <input type="checkbox" value="" ng-model="periodCheck">
             Period
           </label>
+
+
+          // TODO add checkbox to only show income / expense
+          
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -217,7 +243,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="addEntry()">Add</button>
+        <button type="button" class="btn btn-default" ng-click="addEntry()" data-dismiss="modal">Add</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       </div>
     </div>

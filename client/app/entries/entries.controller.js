@@ -1,21 +1,21 @@
 'use strict';
 
 angular.module('hhbApp')
-  .controller('EntriesCtrl', function ($scope, $http) {
+  .controller('EntriesCtrl', function ($scope, $http,) {
     $scope.formData = {};
     $scope.dateCheck = true;
     $scope.amountCheck = true;
     $scope.descriptionCheck = true;
     $scope.categoryCheck = true;
-      $scope.formData.flow = 'expense';
-  $scope.formData.date = new Date();
-  $scope.formData.period = 'Monthly';
-  $scope.formData.category = 'Food';
+    $scope.flowCheck = true;
+    $scope.formData.flow = 'expense';
+    $scope.formData.date = new Date();
+    $scope.formData.period = 'Monthly';
+    $scope.formData.category = 'Food';
 
 
 
 
-      $scope.desc = 'hoi';
 
     // when landing on the page, get all entries and show them
     $http.get('/api/entries')
@@ -84,25 +84,10 @@ angular.module('hhbApp')
             .error(function (data) {
                 console.log('Error: ' + data);
             });
+
+        console.log('close');
+        close();
     };
-
-
-    // to filter by daterange===============================================
-
-        $scope.dateRangeFilter = function (property, startDate, endDate) {
-            return function (item) {
-                if (item[property] === null) return false;
-
-                var itemDate = moment(item[property]);
-                var s = moment(startDate, "DD-MM-YYYY");
-                var e = moment(endDate, "DD-MM-YYYY");
-
-                if (itemDate >= s && itemDate <= e) return true;
-                return false;
-            }
-        }
-
-
 
 
   });
