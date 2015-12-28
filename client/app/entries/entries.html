@@ -4,161 +4,165 @@
 
 <div class="container-fluid">
 
-  <!-- search -->
-  <div class="row">
+	<!-- search -->
+	<div class="row">
 
-    <div class="col-lg-2">
-    </div>
+		<div class="col-lg-2">
+		</div>
 
-    <div class="col-lg-7">
+		<div class="col-lg-7">
 
-      <form class="form-inline">
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
-            <input type="text" class="form-control" id="query" ng-model="query" placeholder="Search description...">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="input-group">
-            <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
-            <input type="text" class="form-control" id="query2" ng-model="query2" placeholder="Search amount">
-          </div>
-        </div>
-      </form>
-    </div>
+			<form class="form-inline">
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+						<input type="text" class="form-control" id="query" ng-model="query" placeholder="Search description...">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+						<input type="text" class="form-control" id="query2" ng-model="query2" placeholder="Search amount">
+					</div>
+				</div>
+			</form>
+		</div>
 
-    <div class="col-lg-1">
+		<div class="col-lg-1">
       <span class="pull-right">
         <button data-toggle="modal" data-target="#editColumns" type="button" class="btn btn-default">Edit columns</button>
       </span>
-    </div>
+		</div>
 
-    <div class="col-lg-2">
+		<div class="col-lg-2">
 
-    </div>
+		</div>
 
-  </div>
+	</div>
 
-  <br>
-  <!-- search 2 -->
-  <div class="row">
+	<br>
+	<!-- search 2 -->
+	<div class="row">
 
-    <div class="col-lg-2">
-    </div>
+		<div class="col-lg-2">
+		</div>
 
-    <div class="col-lg-7">
+		<div class="col-lg-7">
 
-      <form class="form-inline">
-        <div class="form-group">
-          <input class="form-control" ng-model="startDate" type="date">
-        </div>
-        <div class="form-group">
-          <input class="form-control" ng-model="endDate" type="date">
-        </div>
-      </form>
-    </div>
+			<form class="form-inline">
+				<div class="form-group">
+					<input class="form-control" ng-model="startDate" type="date">
+				</div>
+				<div class="form-group">
+					<input class="form-control" ng-model="endDate" type="date">
+				</div>
+			</form>
+		</div>
 
-    <div class="col-lg-1">
-    </div>
+		<div class="col-lg-1">
+		</div>
 
-    <div class="col-lg-2">
+		<div class="col-lg-2">
 
-    </div>
+		</div>
 
-  </div>
+	</div>
 
-  <br>
+	<br>
 
-  <!-- table with previous entries -->
-  <div class="row">
+	<!-- table with previous entries -->
+	<div class="row">
 
-    <div class="col-lg-2">
+		<div class="col-lg-2">
 
-    </div>
-
-
-    <div class="col-lg-8">
-
-      <table class="table">
-        <tr>
-          <th></th>
-          <th ng-click="orderProp === 'date' ? orderProp = '-date' : orderProp = 'date'" ng-show="dateCheck">
-            <span class="pointer">Date</span>
-            <span ng-show="orderProp == 'date'" class="glyphicon glyphicon-arrow-down"></span>
-            <span ng-show="orderProp == '-date'" class="glyphicon glyphicon-arrow-up"></span>
-          </th>
-          <th ng-click="orderProp === 'description' ? orderProp = '-description' : orderProp = 'description'" ng-show="descriptionCheck">
-            <span class="pointer">Description</span>
-          </th>
-          <th ng-click="orderProp === 'amount' ? orderProp = '-amount' : orderProp = 'amount'" ng-show="amountCheck">
-            <span class="pointer">Amount</span>
-          </th>
-          <th ng-click="orderProp === 'category' ? orderProp = '-category' : orderProp = 'category'" ng-show="categoryCheck">
-            <span class="pointer">Category</span>
-          </th>
-          <th ng-show="periodCheck" ng-click="orderProp === 'period' ? orderProp = '-period' : orderProp = 'period'">Period
-          </th>
-          <th></th>
-        </tr>
+		</div>
 
 
-        <tr ng-repeat="entry in entries | filter:{description: query, amount: query2} | orderBy:orderProp">
-          <td ng-show='flowCheck'>
-            <span class="glyphicon glyphicon-minus" style="color:#f49a9a" ng-show="entry.flow == 'expense'"></span>
-            <span class="glyphicon glyphicon-plus" style="color:#d2fca1" ng-show="entry.flow == 'income'"></span>
-          </td>
-          <td ng-show="dateCheck">
+		<div class="col-lg-8">
 
-            {{entry.date | date: 'dd-MM-yyyy'}}
-
-          </td>
-          <td ng-show="descriptionCheck">
-            <div ng-hide="entry.edit" ng-click="entry.edit = true">
-              {{entry.description}}
-            </div>
-            <input type="text" ng-show="entry.edit" ng-blur="editEntry(entry); entry.edit = false" ng-model="entry.description"/>
-          </td>
-          <td ng-show="amountCheck">
-            {{entry.amount}}
-          </td>
-          <td ng-show="categoryCheck">
-            {{entry.category}}
-
-          </td>
-          <td ng-show="periodCheck">
-            {{entry.period}}
-          </td>
-          <td>
-            <span class="glyphicon  glyphicon-pencil" ng-click="editEntry(entry._id)"></span>
-            <span class="glyphicon  glyphicon-trash" ng-click="deleteEntry(entry._id)"></span>
+			<table class="table">
+				<tr>
+					<th></th>
+					<th ng-click="orderProp === 'date' ? orderProp = '-date' : orderProp = 'date'" ng-show="dateCheck">
+						<span class="pointer">Date</span>
+						<span ng-show="orderProp == 'date'" class="glyphicon glyphicon-arrow-down"></span>
+						<span ng-show="orderProp == '-date'" class="glyphicon glyphicon-arrow-up"></span>
+					</th>
+					<th ng-click="orderProp === 'description' ? orderProp = '-description' : orderProp = 'description'" ng-show="descriptionCheck">
+						<span class="pointer">Description</span>
+					</th>
+					<th ng-click="orderProp === 'amount' ? orderProp = '-amount' : orderProp = 'amount'" ng-show="amountCheck">
+						<span class="pointer">Amount</span>
+					</th>
+					<th ng-click="orderProp === 'category' ? orderProp = '-category' : orderProp = 'category'" ng-show="categoryCheck">
+						<span class="pointer">Category</span>
+					</th>
+					<th ng-show="periodCheck" ng-click="orderProp === 'period' ? orderProp = '-period' : orderProp = 'period'">Period
+					</th>
+					<th></th>
+				</tr>
 
 
-          </td>
-        </tr>
-      </table>
+				<tr ng-repeat="entry in entries | filter:{description: query, amount: query2} | orderBy:orderProp">
+					<td ng-show='flowCheck'>
+						<span class="glyphicon glyphicon-minus" style="color:#f49a9a" ng-show="entry.flow == 'expense'"></span>
+						<span class="glyphicon glyphicon-plus" style="color:#d2fca1" ng-show="entry.flow == 'income'"></span>
+					</td>
+					<td ng-show="dateCheck">
 
-      <button class="btn add" type="button" ui-sref="add">
-        <span class="glyphicon glyphicon-plus"></span>
-        &nbsp;Add another entry
-      </button>
-      <button data-toggle="modal" data-target="#addEntry" type="button" class="btn btn-default">
-        Add entry here
-      </button>
-      <button class="btn btn-danger" type="button" ng-click="deleteEntries()">
-        <span class="glyphicon glyphicon-trash"></span>
-        &nbsp;Delete all entries
-      </button>
+						{{entry.date | date: 'dd-MM-yyyy'}}
 
-    </div>
+					</td>
+					<td ng-show="descriptionCheck">
+						<div ng-hide="entry.edit" ng-click="entry.edit = true">
+							{{entry.description}}
+						</div>
+						<input type="text" ng-show="entry.edit" ng-blur="editEntry(entry); entry.edit = false" ng-model="entry.description"/>
+					</td>
+					<td ng-show="amountCheck">
+						<div ng-hide="entry.edit" ng-click="entry.edit = true">
+							{{entry.amount}}
+						</div>
+						<input type="text" ng-show="entry.edit" ng-blur="editEntry(entry); entry.edit = false" ng-model="entry.amount"/>
+
+					</td>
+					<td ng-show="categoryCheck">
+						{{entry.category}}
+
+					</td>
+					<td ng-show="periodCheck">
+						{{entry.period}}
+					</td>
+					<td>
+						<span class="glyphicon  glyphicon-pencil" ng-click="editEntry(entry._id)"></span>
+						<span class="glyphicon  glyphicon-trash" ng-click="deleteEntry(entry._id)"></span>
 
 
-    <div class="col-lg-2">
+					</td>
+				</tr>
+			</table>
 
-    </div>
+			<button class="btn add" type="button" ui-sref="add">
+				<span class="glyphicon glyphicon-plus"></span>
+				&nbsp;Add another entry
+			</button>
+			<button data-toggle="modal" data-target="#addEntry" type="button" class="btn btn-default">
+				Add entry here
+			</button>
+			<button class="btn btn-danger" type="button" ng-click="deleteEntries()">
+				<span class="glyphicon glyphicon-trash"></span>
+				&nbsp;Delete all entries
+			</button>
+
+		</div>
 
 
-  </div>
+		<div class="col-lg-2">
+
+		</div>
+
+
+	</div>
 
 </div>
 
@@ -167,51 +171,51 @@
 <!-- Modal content columns-->
 <!-- TODO: make directive -->
 <div class="modal fade" id="editColumns" role="dialog">
-  <div class="modal-dialog">
+	<div class="modal-dialog">
 
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit columns</h4>
-      </div>
-      <div class="modal-body">
-        <p>Which columns do you want to display
-        </p>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="" ng-model="flowCheck">
-            Flow
-          </label>
-        </div>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="" ng-model="dateCheck">
-            Date
-          </label>
-        </div>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="" ng-model="descriptionCheck">
-            Description
-          </label>
-        </div>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="" ng-model="amountCheck">
-            Amount
-          </label>
-        </div>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="" ng-model="categoryCheck">
-            Category
-          </label>
-        </div>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="" ng-model="periodCheck">
-            Period
-          </label>
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Edit columns</h4>
+			</div>
+			<div class="modal-body">
+				<p>Which columns do you want to display
+				</p>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="" ng-model="flowCheck">
+						Flow
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="" ng-model="dateCheck">
+						Date
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="" ng-model="descriptionCheck">
+						Description
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="" ng-model="amountCheck">
+						Amount
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="" ng-model="categoryCheck">
+						Category
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="" ng-model="periodCheck">
+						Period
+					</label>
 
 
 
@@ -236,34 +240,34 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
 
-      </div>
-    </div>
-  </div>
+			</div>
+		</div>
+	</div>
 </div>
 
 
 <div class="modal fade" id="addEntry" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add new entry</h4>
-      </div>
-      <div class="modal-body">
-        <date-form></date-form>
-        <amount-form></amount-form>
-        <description-form></description-form>
-        <categories-menu></categories-menu>
-        <period-menu></period-menu>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Add new entry</h4>
+			</div>
+			<div class="modal-body">
+				<date-form></date-form>
+				<amount-form></amount-form>
+				<description-form></description-form>
+				<categories-menu></categories-menu>
+				<period-menu></period-menu>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="addEntry()" data-dismiss="modal">Add</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-      </div>
-    </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" ng-click="addEntry()" data-dismiss="modal">Add</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
 
-  </div>
+	</div>
 </div>
 
 
