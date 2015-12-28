@@ -8,6 +8,8 @@ angular.module('hhbApp')
     $scope.descriptionCheck = true;
     $scope.categoryCheck = true;
     $scope.flowCheck = true;
+    $scope.incomeCheck = true;
+    $scope.expenseCheck = true;
     $scope.formData.flow = 'expense';
     $scope.formData.date = new Date();
     $scope.formData.period = 'Monthly';

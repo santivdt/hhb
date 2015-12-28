@@ -218,12 +218,27 @@
 					</label>
 
 
-					// TODO add checkbox to only show income / expense
 
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
+          <!-- checkboxes to only show income/expense-->
+          <br>
+          <br>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="incomeCheck"> Only show income
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="expenseCheck"> Only show expenses
+            </label>
+          </div>
+
+
+
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
 
 			</div>
 		</div>
