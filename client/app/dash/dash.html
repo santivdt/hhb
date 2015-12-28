@@ -3,12 +3,27 @@
   <!-- ....... -->
   <div class="row">
 
-    <div class="col-sm-2 col-md-2">
+    <div class="col-md-2">
     </div>
 
 
     <div class="col-md-8">
-      DASHBOARD
+      <table class="table">
+        <tr>
+          <th>What</th>
+          <th>Total</th>
+          <th>..</th>
+        </tr>
+        <tr>
+          <td>Total expenses</td>
+          <td>{{total}}</td>
+          <td>
+            <span class="glyphicon glyphicon-play" ng-click="totalExpense()" style="color:green"></span>
+          </td>
+        </tr>
+      </table>
+
+
     </div>
 
 
