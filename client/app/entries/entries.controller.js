@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hhbApp')
-  .controller('EntriesCtrl', function ($scope, $http,) {
+  .controller('EntriesCtrl', function ($scope, $http) {
     $scope.formData = {};
     $scope.dateCheck = true;
     $scope.amountCheck = true;

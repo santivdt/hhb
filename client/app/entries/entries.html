@@ -117,13 +117,13 @@
 						<div ng-hide="entry.edit" ng-click="entry.edit = true">
 							{{entry.description}}
 						</div>
-						<input type="text" ng-show="entry.edit" ng-blur="editEntry(entry); entry.edit = false" ng-model="entry.description"/>
+						<input type="text" ng-show="entry.edit || !entry.description" ng-blur="editEntry(entry); entry.edit = false" ng-model="entry.description"/>
 					</td>
 					<td ng-show="amountCheck">
 						<div ng-hide="entry.edit" ng-click="entry.edit = true">
 							{{entry.amount}}
 						</div>
-						<input type="text" ng-show="entry.edit" ng-blur="editEntry(entry); entry.edit = false" ng-model="entry.amount"/>
+						<input type="text" ng-show="entry.edit || !entry.amount" ng-blur="editEntry(entry); entry.edit = false" ng-model="entry.amount"/>
 
 					</td>
 					<td ng-show="categoryCheck">
