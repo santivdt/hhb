@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('hhbApp')
-  .controller('DashCtrl', function ($scope, $http) {
-
-
+  .controller('DashCtrl', function ($scope, $http, $filter) {
 
     // when landing on the page, get all entries and show them, then execute calculation methods
     $http.get('/api/entries')
       .success(function(data) {
         $scope.entries = data;
+        $scope.totalExpenseAmount =  $filter('sumByKey')(data,'amount','expense');
+        $scope.totalIncomeAmount =  $filter('sumByKey')(data,'amount','income');
         console.log(data);
       })
       .error(function(data) {
