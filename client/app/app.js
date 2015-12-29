@@ -9,7 +9,9 @@ angular.module('hhbApp', [
   'ngSanitize',
   'ui.router',
   'ui.bootstrap',
-  'validation.match'
+  'validation.match',
+  'nvd3ChartDirectives',
+  'chart.js',
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

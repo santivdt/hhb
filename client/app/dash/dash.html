@@ -1,22 +1,17 @@
 <div class="container-fluid">
-
   <!-- ....... -->
   <div class="row">
-
-    <div class="col-md-2">
-    </div>
-
-
+    <div class="col-md-2"></div>
     <div class="col-md-8">
       <table class="table">
         <tr>
-          <th>What</th>
+          <th>When</th>
           <th>Total Expense</th>
           <th>Total Income</th>
           <th>Balance</th>
         </tr>
         <tr>
-          <td>Total expenses</td>
+          <td>Always</td>
           <td>{{totalExpenseAmount}}</td>
           <td>{{totalIncomeAmount}}</td>
           <td>
@@ -24,18 +19,54 @@
           </td>
         </tr>
       </table>
-
-
     </div>
-
-
-
     <div class="col-md-2">
-
     </div>
-
-
   </div>
 
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <table class="table">
+        <tr>
+          <th>When</th>
+          <th>Total Expense</th>
+          <th>Spent on food</th>
+          <th>Spent on party </th>
+          <th>Spent on travelling</th>
+        </tr>
+        <tr>
+          <td>Always</td>
+          <td>{{totalExpenseAmount}}</td>
+          <td>{{totalFood}}</td>
+          <td>{{totalParty}}</td>
+          <td>{{totalTravel}}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-2">
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-4">
+        <canvas id="pie"
+                class="chart chart-pie"
+                chart-data="data"
+                chart-labels="labels"
+                chart-legend="true">
+        </canvas>
+    </div>
+    <div class="col-lg-4">
+      <canvas id="pie"
+              class="chart chart-pie"
+              chart-data="data"
+              chart-labels="labels"
+              chart-legend="true">
+      </canvas>
+    </div>
+    <div class="col-lg-2"></div>
+  </div>
 </div>
+
