@@ -90,11 +90,11 @@ angular.module('hhbApp')
     };
 
     //filterDate
-    $scope.filterDate = function(startDate, endDate) {
-        console.log ('filter Data function has been called');
-        $scope.entriesData = $filter('dateFilter')($scope.entries, startDate, endDate, 'flow', 'expense');
-        console.log('what does the filter return:' + $scope.entriesData);
-    }
+    //$scope.filterDate = function (startDate, endDate) {
+    //    console.log('---> filter Data function has been called');
+    //    $scope.entries = $filter('dateFilter')($scope.entries, startDate, endDate);
+    //    console.log('---> what does the filter return:' + $scope.entries);
+    //}
 
 
   //changeDate of all entries
