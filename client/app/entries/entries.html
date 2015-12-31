@@ -56,7 +56,7 @@
 				<div class="form-group">
 					<input class="form-control" ng-model="endDate" type="date">
 				</div>
-				<button class="btn btn-default" ng-click="filterDate(startDate, endDate)">Filter</button>
+				<!--<button class="btn btn-default" ng-click="filterDate(startDate, endDate)">Filter</button>-->
 			</form>
 		</div>
 
@@ -104,7 +104,7 @@
 				</tr>
 
 
-				<tr ng-repeat="entry in entries | filter:{description: query, amount: query2} | orderBy:orderProp">
+				<tr ng-repeat="entry in entries  | filter:{description: query, amount: query2 } | dateFilter:startDate:endDate | orderBy:orderProp">
 					<td ng-show='flowCheck'>
 						<span class="glyphicon glyphicon-minus" style="color:#f49a9a" ng-show="entry.flow == 'expense'"></span>
 						<span class="glyphicon glyphicon-plus" style="color:#d2fca1" ng-show="entry.flow == 'income'"></span>
