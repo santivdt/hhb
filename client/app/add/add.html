@@ -1,59 +1,64 @@
 <div class="container-fluid">
 
-<!-- input fields to add new entries -->
- <div class="row">
-
-    <div class="col-sm-2 col-md-2">
-    </div>
-
-
-    <div class="col-md-8">
-      <form name="addForm" class="form-horizontal">
-        <div class="form-group ">
-          <label>Expense/Income?</label>
-          <div class="radio">
-            <label>
-              <input type="radio" id="expense" value="expense" ng-model="formData.flow" checked="checked">
-             Expense
-            </label>
-          </div>
-          <div class="radio">
-            <label>
-              <input type="radio" id="income" value="income" ng-model="formData.flow">
-              Income
-            </label>
-          </div>
+    <!-- input fields to add new entries -->
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <!--<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Add new entry</button>-->
         </div>
+        <div class="col-md-2"></div>
+    </div>
+    <button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Add new entry</button>
+    <div class="row" uib-collapse="isCollapsed">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <form name="addForm" class="form-horizontal">
+                <div class="form-group ">
+                    <label>Expense/Income?</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" id="expense" value="expense" ng-model="formData.flow" checked="checked">
+                            Expense
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" id="income" value="income" ng-model="formData.flow">
+                            Income
+                        </label>
+                    </div>
+                </div>
+                <date-form></date-form>
+                <amount-form></amount-form>
+                <description-form></description-form>
+                <categories-menu></categories-menu>
+                <period-menu></period-menu>
 
-        <date-form></date-form>
 
-        <amount-form></amount-form>
+            </form>
 
-        <description-form></description-form>
+            <button type="submit" class="btn btn-bitbucket" ng-click="addEntry(1)">Add Another</button>
+            <button type="submit" class="btn btn-bitbucket" ng-click="addEntry(0)">Add entry</button>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
 
-        <categories-menu></categories-menu>
+    <br><br>
 
-        <period-menu></period-menu>
-
-
-      </form>
-
-      <button type="submit" class="btn btn-bitbucket" ng-click="addEntry()">Add entry</button>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="newCategory" placeholder="Category..">
+                </div>
+                <button class="btn btn-default" ng-click="addCategory()">Add</button>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
     </div>
 
 
 
-
-
-
-
-    </div>
-
-
-    <div class="col-md-2">
-
-
-    </div>
-
-
-  </div>
+</div>
