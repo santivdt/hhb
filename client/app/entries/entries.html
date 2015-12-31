@@ -56,6 +56,7 @@
 				<div class="form-group">
 					<input class="form-control" ng-model="endDate" type="date">
 				</div>
+				<button class="btn btn-default" ng-click="filterDate(startDate, endDate)">Filter</button>
 			</form>
 		</div>
 
@@ -152,6 +153,10 @@
 			<button class="btn btn-danger" type="button" ng-click="deleteEntries()">
 				<span class="glyphicon glyphicon-trash"></span>
 				&nbsp;Delete all entries
+			</button>
+			<input type="number" ng-model="number">
+			<button class="btn btn-default" type="button" ng-click="changeDate()">
+				&nbsp;Change date
 			</button>
 
 		</div>

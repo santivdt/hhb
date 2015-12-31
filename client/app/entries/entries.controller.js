@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hhbApp')
-  .controller('EntriesCtrl', function ($scope, $http) {
+  .controller('EntriesCtrl', function ($scope, $http, $filter) {
     $scope.formData = {};
     $scope.dateCheck = true;
     $scope.amountCheck = true;
@@ -73,8 +73,6 @@ angular.module('hhbApp')
 
 
      //to add en antry from the modal
-
-
     $scope.addEntry = function() {
         console.log('click');
         $http.post('/api/entries', $scope.formData)
@@ -90,6 +88,29 @@ angular.module('hhbApp')
         console.log('close');
         close();
     };
+
+    //filterDate
+    $scope.filterDate = function(startDate, endDate) {
+        console.log ('filter Data');
+        $scope.entriesData = $filter('dateFilter')($scope.entries, 'startDate', 'endDate', 'flow', 'expense');
+        console.log($scope.startDate);
+        console.log($scope.endDate)
+        console.log($scope.entriesData);
+    }
+
+
+  //changeDate of all entries
+     $scope.changeDate = function() {
+         for (var i = $scope.entries.length - 1; i >= 0; i--) {
+             var d = $scope.entries[i].date;
+             var n = new Date(Date.parse(d));
+             console.log(n);
+         // i have all the correctly formatted dates just need to insert them into the entries array splice? indexOf?
+             
+         }
+     }
+
+
 
 
   });
