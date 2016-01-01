@@ -34,13 +34,13 @@ angular.module('hhbApp')
         $scope.addCategory = function() {
             console.log('addCat');
             $http.post('/api/categories', $scope.newCategory)
-                .success(function(data) {
+                .success(function(categories) {
                     $scope.newCategory = {}; // clear the form so our user is ready to enter another
-                    $scope.categories = data;
-                    console.log(data);
+                    $scope.categories = categories;
+                    console.log(categories);
                 })
-                .error(function(data) {
-                    console.log('Error: ' + data);
+                .error(function(categories) {
+                    console.log('Error: ' + categories);
                 })
         };
 

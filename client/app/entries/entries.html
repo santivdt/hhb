@@ -19,12 +19,6 @@
 						<input type="text" class="form-control" id="query" ng-model="query" placeholder="Search description...">
 					</div>
 				</div>
-				<div class="form-group">
-					<div class="input-group">
-						<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
-						<input type="text" class="form-control" id="query2" ng-model="query2" placeholder="Search amount">
-					</div>
-				</div>
 			</form>
 		</div>
 
@@ -50,13 +44,14 @@
 		<div class="col-lg-7">
 
 			<form class="form-inline">
+				Filter results between
 				<div class="form-group">
 					<input class="form-control" ng-model="startDate" type="date">
 				</div>
+				and
 				<div class="form-group">
 					<input class="form-control" ng-model="endDate" type="date">
 				</div>
-				<!--<button class="btn btn-default" ng-click="filterDate(startDate, endDate)">Filter</button>-->
 			</form>
 		</div>
 
@@ -105,7 +100,7 @@
 
 
 				<tr ng-repeat="entry in entries  | filter:{description: query, amount: query2 } | dateFilter:startDate:endDate | orderBy:orderProp">
-					<td ng-show='flowCheck'>
+				<td ng-show='flowCheck'>
 						<span class="glyphicon glyphicon-minus" style="color:#f49a9a" ng-show="entry.flow == 'expense'"></span>
 						<span class="glyphicon glyphicon-plus" style="color:#d2fca1" ng-show="entry.flow == 'income'"></span>
 					</td>
@@ -154,11 +149,6 @@
 				<span class="glyphicon glyphicon-trash"></span>
 				&nbsp;Delete all entries
 			</button>
-			<input type="number" ng-model="number">
-			<button class="btn btn-default" type="button" ng-click="changeDate()">
-				&nbsp;Change date
-			</button>
-
 		</div>
 
 

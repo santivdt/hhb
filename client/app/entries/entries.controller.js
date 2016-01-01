@@ -89,26 +89,9 @@ angular.module('hhbApp')
         close();
     };
 
-    //filterDate
-    //$scope.filterDate = function (startDate, endDate) {
-    //    console.log('---> filter Data function has been called');
-    //    $scope.entries = $filter('dateFilter')($scope.entries, startDate, endDate);
-    //    console.log('---> what does the filter return:' + $scope.entries);
-    //}
-
-
-  //changeDate of all entries
-  //   $scope.changeDate = function() {
-  //       for (var i = $scope.entries.length - 1; i >= 0; i--) {
-  //           var d = $scope.entries[i].date;
-  //           var n = new Date(Date.parse(d));
-  //           console.log(n);
-  //          // i have all the correctly formatted dates just need to insert them into the entries array splice? indexOf?
-  //           $scope.entries[i].date = n;
-  //           console.log($scope.entries);
-  //           }
-  //       }
-
-
-     });
+    $scope.filterDate = function(startDate, endDate) {
+        $scope.entriesData = $filter('dateFilter')($scope.entries, startDate, endDate);
+        console.log($scope.entriesData);
+    }
+});
 

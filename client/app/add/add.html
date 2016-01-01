@@ -4,11 +4,11 @@
     <div class="row">
         <div class="col-md-2"></div>
         <div class="col-md-8">
-            <!--<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Add new entry</button>-->
+            <button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed" ng-show="isCollapsed">Add new entry</button>
+            <uib-progressbar value="55"></uib-progressbar>
         </div>
         <div class="col-md-2"></div>
     </div>
-    <button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Add new entry</button>
     <div class="row" uib-collapse="isCollapsed">
         <div class="col-md-2">
         </div>
