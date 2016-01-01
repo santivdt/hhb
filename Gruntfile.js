@@ -9,6 +9,9 @@ module.exports = function (grunt) {
     localConfig = {};
   }
 
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
   // Load grunt tasks automatically, when needed
   require('jit-grunt')(grunt, {
     express: 'grunt-express-server',
@@ -48,6 +51,13 @@ module.exports = function (grunt) {
       prod: {
         options: {
           script: '<%= yeoman.dist %>/<%= yeoman.server %>'
+        }
+      }
+    },
+    sass: {
+      dist: {
+        files: {
+          'client/app/scss/css/style.css' : 'client/app/scss/style.scss'
         }
       }
     },
@@ -109,6 +119,10 @@ module.exports = function (grunt) {
         files: ['bower.json'],
         tasks: ['wiredep']
       },
+      sass: {
+          files: 'client/app/scss/style.scss',
+          tasks: ['sass']
+        }
     },
 
     // Make sure code styles are up to par and there are no obvious mistakes
@@ -646,6 +660,7 @@ module.exports = function (grunt) {
       'injector',
       'wiredep:client',
       'postcss',
+      'sass',
       'express:dev',
       'wait',
       'open',
