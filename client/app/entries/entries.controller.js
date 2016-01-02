@@ -15,6 +15,8 @@ angular.module('hhbApp')
     $scope.formData.period = 'Monthly';
     $scope.formData.category = 'Food';
 
+    $scope.isCollapsed = false;
+
 
 
 

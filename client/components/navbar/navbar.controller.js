@@ -2,12 +2,14 @@
 
 class NavbarController {
   //start-non-standard
-  menu = [{
+  menu = [
+    {
     'title': 'Home',
     'state': 'main'
-  },
+    },
     {'title': 'Add',
-    'state': 'add'
+    'state': 'add',
+    'submenu': ['Add entry', 'Add category']
     },
     {'title': 'Entries',
     'state': 'entries'
@@ -17,7 +19,7 @@ class NavbarController {
     }
   ];
 
-  isCollapsed = true;
+  isCollapsed = false;
   //end-non-standard
 
   constructor(Auth) {

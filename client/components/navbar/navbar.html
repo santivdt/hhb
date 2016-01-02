@@ -9,13 +9,40 @@
       </button>
       <a href="/" class="navbar-brand">SvdT</a>
     </div>
-    <div collapse="nav.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
+    <div uib-collapse="nav.isCollapsed" class="navbar-collapse collapse" id="navbar-main">
+
       <ul class="nav navbar-nav">
-        <li ng-repeat="item in nav.menu" ui-sref-active="active">
-            <a ui-sref="{{item.state}}">{{item.title}}</a>
+        <span ng-repeat-start="item in nav.menu"></span>
+        <li ng-if="item.submenu !== undefined" uib-dropdown>
+          <a ui-sref="{{item.state}}" uib-dropdown-toggle>{{item.title}}<span class="caret"></span> </a>
+          <ul class="uib-dropdown-menu" aria-labelledby="menu-dropdown">
+            <li ng-repeat="subitem in item.submenu">
+              <a ui-sref="{{}}">{{subitem}}</a>
+            </li>
+          </ul>
         </li>
-        <li ng-show="nav.isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>
+        <li ng-if="item.submenu === undefined">
+          <a ui-sref="{{item.state}}">
+            {{item.title}}
+          </a>
+        </li>
+        <span ng-repeat-end></span>
       </ul>
+        <!--<li ng-repeat="item in nav.menu" ui-sref-active="active">-->
+            <!--<a ui-sref="{{item.state}}">{{item.title}}</a>-->
+        <!--</li>-->
+
+
+
+        <!--<li uib-dropdown>-->
+          <!--<a href="#" id="menu-dropdown" uib-dropdown-toggle>Bla <span class="caret"></span></a>-->
+          <!--<ul class="uib-dropdown-menu" aria-labelledby="menu-dropdown">-->
+            <!--<li><a href="#">Add category</a></li>-->
+            <!--<li><a href="#">Add entry</a></li>-->
+          <!--</ul>-->
+        <!--</li>-->
+        <!--<li ng-show="nav.isAdmin()" ui-sref-active="active"><a ui-sref="admin">Admin</a></li>-->
+      <!--</ul>-->
 
       <ul class="nav navbar-nav navbar-right">
         <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>
