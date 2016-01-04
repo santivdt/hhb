@@ -12,6 +12,9 @@ angular.module('hhbApp', [
   'validation.match',
   'nvd3ChartDirectives',
   'chart.js',
+  'jsTag',
+  'siyfion.sfTypeahead',
+  'ngTagsInput'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider
