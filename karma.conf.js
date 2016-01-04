@@ -39,6 +39,9 @@ module.exports = function(config) {
       'client/bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js',
       'client/bower_components/Chart.js/Chart.js',
       'client/bower_components/angular-chart.js/dist/angular-chart.js',
+      'client/bower_components/typeahead.js/dist/typeahead.bundle.js',
+      'client/bower_components/angular-typeahead/angular-typeahead.js',
+      'client/bower_components/ng-tags-input/ng-tags-input.min.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'client/app/app.js',

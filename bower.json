@@ -19,7 +19,9 @@
     "moment": "~2.10.6",
     "d3": "~3.5.12",
     "angularjs-nvd3-directives": "~0.0.7",
-    "angular-chart.js": "~0.8.8"
+    "angular-chart.js": "~0.8.8",
+    "angular-typeahead": "~0.3.1",
+    "ng-tags-input": "3.0.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0"
