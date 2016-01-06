@@ -77,9 +77,30 @@ angular.module('hhbApp')
         close();
     };
 
-    $scope.filterDate = function(startDate, endDate) {
-        $scope.entriesData = $filter('dateFilter')($scope.entries, startDate, endDate);
-        console.log($scope.entriesData);
+    $scope.flow = function () {
+        console.log('function = called upon ng change');
+        if ($scope.expenseCheck === true && $scope.incomeCheck === true) {
+              console.log('both are true');
+              $scope.entries = entries.data;
+        }
+        else if ($scope.incomeCheck === true) {
+              console.log('incomecheck is true');
+              $scope.entries = entries.data;
+              $scope.entries =  $filter('keyValueFilter')($scope.entries, 'flow', 'income');
+              console.log('function returns');
+              console.log($scope.entries);
+        }
+        else if ($scope.expenseCheck === true) {
+              console.log('expensecheck is true');
+              $scope.entries = entries.data;
+              $scope.entries =  $filter('keyValueFilter')($scope.entries, 'flow', 'expense');
+              console.log('function returns');
+              console.log($scope.entries);
+        }
+        else {
+              console.log('both are false');
+              $scope.entries = [];
+        }
     }
 });
 
