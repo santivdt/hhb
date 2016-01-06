@@ -101,7 +101,7 @@ export function destroy(req, res) {
     .catch(handleError(res));
 }
 
-// Deletes a Entry from the DB
+// Deletes all Entries from the DB
 export function destroyAll(req, res) {
   Entry.remove({})
     .then(responseWithResult(res))
