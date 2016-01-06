@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('hhbApp')
-  .controller('EntriesCtrl', function ($scope, $http, $filter) {
+  .controller('EntriesCtrl', function ($scope, $http, $filter, entries) {
     $scope.formData = {};
     $scope.dateCheck = true;
     $scope.amountCheck = true;
@@ -14,22 +14,8 @@ angular.module('hhbApp')
     $scope.formData.date = new Date();
     $scope.formData.period = 'Monthly';
     $scope.formData.category = 'Food';
-
     $scope.isCollapsed = false;
-
-
-
-
-
-    // when landing on the page, get all entries and show them
-    $http.get('/api/entries')
-      .success(function(data) {
-        $scope.entries = data;
-        console.log(data);
-      })
-      .error(function(data) {
-        console.log('Error: ' + data);
-      });
+    $scope.entries = entries.data;
 
 
     // delete an entry
@@ -53,7 +39,7 @@ angular.module('hhbApp')
       $http.delete('/api/entries')
         .success(function (data) {
           $scope.entries = [];
-          console.log('delete')
+          console.log('delete');
         })
         .error(function (data) {
 
