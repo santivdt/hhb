@@ -99,7 +99,7 @@
 				</tr>
 
 
-				<tr ng-repeat="entry in entries  | filter:{description: query, amount: query2 } | dateFilter:startDate:endDate | orderBy:orderProp">
+				<tr ng-repeat="entry in entries  | filter:{description: query, amount: query2 } | keyValueFilter:'flow':expenseCheck:incomeCheck | dateFilter:startDate:endDate | orderBy:orderProp">
 				<td ng-show='flowCheck'>
 						<span class="glyphicon glyphicon-minus" style="color:#f49a9a" ng-show="entry.flow == 'expense'"></span>
 						<span class="glyphicon glyphicon-plus" style="color:#d2fca1" ng-show="entry.flow == 'income'"></span>
@@ -219,12 +219,12 @@
           <br>
           <div class="checkbox">
             <label>
-              <input type="checkbox" ng-model="incomeCheck" ng-change="flow()"> Show income
+              <input type="checkbox" ng-model="incomeCheck" ng-true-value="'income'"> Show income
             </label>
           </div>
           <div class="checkbox">
             <label>
-              <input type="checkbox" ng-model="expenseCheck" ng-change="flow()"> Show expenses
+              <input type="checkbox" ng-model="expenseCheck" ng-true-value="'expense'"> Show expenses
             </label>
           </div>
 

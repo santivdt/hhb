@@ -8,8 +8,8 @@ angular.module('hhbApp')
     $scope.descriptionCheck = true;
     $scope.categoryCheck = true;
     $scope.flowCheck = true;
-    $scope.incomeCheck = true;
-    $scope.expenseCheck = true;
+    $scope.incomeCheck = 'income';
+    $scope.expenseCheck = 'expense';
     $scope.formData.flow = 'expense';
     $scope.formData.date = new Date();
     $scope.formData.period = 'Monthly';
@@ -77,30 +77,5 @@ angular.module('hhbApp')
         close();
     };
 
-    $scope.flow = function () {
-        console.log('function = called upon ng change');
-        if ($scope.expenseCheck === true && $scope.incomeCheck === true) {
-              console.log('both are true');
-              $scope.entries = entries.data;
-        }
-        else if ($scope.incomeCheck === true) {
-              console.log('incomecheck is true');
-              $scope.entries = entries.data;
-              $scope.entries =  $filter('keyValueFilter')($scope.entries, 'flow', 'income');
-              console.log('function returns');
-              console.log($scope.entries);
-        }
-        else if ($scope.expenseCheck === true) {
-              console.log('expensecheck is true');
-              $scope.entries = entries.data;
-              $scope.entries =  $filter('keyValueFilter')($scope.entries, 'flow', 'expense');
-              console.log('function returns');
-              console.log($scope.entries);
-        }
-        else {
-              console.log('both are false');
-              $scope.entries = [];
-        }
-    }
 });
 
