@@ -10,9 +10,9 @@ class NavbarController {
     {'title': 'Add',
     'state': 'add',
     'submenu': [{'title': 'Add entry',
-                'state': 'add'},
+                'state': 'addEntry'},
                 {'title': 'Add category',
-                  'state': 'addCatecory'}]
+                  'state': 'addCategory'}]
     },
     {'title': 'Entries',
     'state': 'entries'
