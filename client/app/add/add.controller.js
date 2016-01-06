@@ -1,15 +1,14 @@
 'use strict';
 
 angular.module('hhbApp')
-    .controller('AddCtrl', function ($scope, $http, $state) {
+    .controller('AddCtrl', function ($scope, $http, $state, categories) {
         $scope.formData = {};
         $scope.formData.flow = 'expense';
         $scope.formData.date = new Date();
         $scope.formData.period = 'Monthly';
         $scope.formData.category = 'Food';
         $scope.isCollapsed = false;
-
-
+        $scope.categories = categories.data;
 
         // when submitting the add form, send the input to the node API
         $scope.addEntry = function(addAnother) {
@@ -22,27 +21,12 @@ angular.module('hhbApp')
                 })
                 .error(function(data) {
                     console.log('Error: ' + data);
-                })
+                });
 
             if (addAnother === 0){
                 $state.go('entries');
                 console.log('state changed')
             }
         };
-
-        // when submitting the a category, send the input to the node API
-        $scope.addCategory = function() {
-            console.log('addCat');
-            $http.post('/api/categories', $scope.newCategory)
-                .success(function(categories) {
-                    $scope.newCategory = {}; // clear the form so our user is ready to enter another
-                    $scope.categories = categories;
-                    console.log(categories);
-                })
-                .error(function(categories) {
-                    console.log('Error: ' + categories);
-                })
-        };
-
     });
 
