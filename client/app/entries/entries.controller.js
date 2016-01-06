@@ -78,7 +78,6 @@ angular.module('hhbApp')
     };
 
     $scope.flow = function () {
-        console.log('function = called upon ng change');
         if ($scope.expenseCheck === true && $scope.incomeCheck === true) {
               console.log('both are true');
               $scope.entries = entries.data;

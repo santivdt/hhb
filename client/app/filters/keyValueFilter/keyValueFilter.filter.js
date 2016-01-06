@@ -7,13 +7,13 @@ angular.module('hhbApp')
                 return input;
             }
 
-            var data = [];
+            var entries = [];
             for (var i = input.length - 1; i >= 0; i--) {
-                if (input[i][keyToCompare] == input[i][valueToCompare]) {
-                    data.push(input[i]);
+                if (input[i][keyToCompare] == valueToCompare) {
+                    entries.push(input[i]);
                 }
             }
-            return data;
+            return entries;
         }
     });
 
