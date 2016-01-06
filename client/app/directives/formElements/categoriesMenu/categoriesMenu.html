@@ -1,8 +1,7 @@
 <div class="form-group">
   <label>Category</label>
   <select class="form-control" ng-model="formData.category">
-    <option>Food</option>
-    <option>Party</option>
-    <option>Travel</option>
+    <option ng-repeat="category in categories">{{category.title}}</option>
+
   </select>
 </div>

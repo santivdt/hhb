@@ -1,32 +1,48 @@
 'use strict';
 
 angular.module('hhbApp')
-  .controller('DashCtrl', function ($scope, $http, $filter) {
+  .controller('DashCtrl', function ($scope, $http, $filter, categories, entries) {
 
-      // when landing on the page, get all entries and show them, then execute calculation methods
-      // TODO make that it loads entries when state is changed @Daphne
-      $http.get('/api/entries')
-          .success(function (data) {
-              $scope.entries = data;
-              $scope.totalExpenseAmount = $filter('sumByKey')(data, 'amount', 'flow', 'expense');
-              $scope.totalIncomeAmount = $filter('sumByKey')(data, 'amount', 'flow', 'income');
-              $scope.totalFood = $filter('sumByKeyAdvanced')(data, 'amount', 'category', 'Food', 'flow', 'expense');
-              $scope.totalParty = $filter('sumByKeyAdvanced')(data, 'amount', 'category', 'Party', 'flow', 'expense');
-              $scope.totalTravel = $filter('sumByKeyAdvanced')(data, 'amount', 'category', 'Travel', 'flow', 'expense');
-              $scope.data = [$scope.totalFood, $scope.totalParty, $scope.totalTravel];
-              console.log(data);
-          })
-          .error(function (data) {
-              console.log('Error: ' + data);
-          });
+      //bind the data that was loaded on resolve to $scope
+      $scope.categories = categories.data;
+      $scope.entries = entries.data;
 
-      //get totals of each categories
+      // calculate totals
+      $scope.totalExpenseAmount = $filter('sumByKey')($scope.entries, 'amount', 'flow', 'expense');
+      $scope.totalIncomeAmount = $filter('sumByKey')($scope.entries, 'amount', 'flow', 'income');
 
+      //calculate totals with flexible categories
+      $scope.calculateTotals = function (){
+          console.log('calculateTotals');
+          $scope.totals = [];
+          for (var i = 0; i < $scope.categories.length; i++) {
+              var category = $scope.categories[i].title;
+              console.log(category);
+              var output = 'total' + (category);
+              console.log(output);
+              $scope[output] = $filter('sumByKeyAdvanced')($scope.entries, 'amount', 'category', category, 'flow', 'expense');
+              console.log($scope[output]);
+              $scope.totals.push($scope[output]);
+              console.log($scope.totals);
+              $scope.data = $scope.totals;
+          }
+      };
 
-      // Pie chart
-      $scope.labels = ["Food", " Party", "Travel"];
-      //$scope.data = [10, 30, 150];
-
-
-
-  })
+      //create array from all categories and array from totals
+      $scope.createLabels = function () {
+          console.log('create labels');
+          console.log($scope.categories.length);
+          $scope.labels = [];
+          for (var i = 0; i < $scope.categories.length; i++) {
+            $scope.labels.push($scope.categories[i].title);
+            console.log($scope.labels);
+          }
+      //      $scope.data = [];
+      //    for (var i = 0; i < $scope.categories.length; i++) {
+      //        $scope.data.push($scope.totals[i]);
+      //        console.log($scope.totals[i]);
+      //    }
+      //    console.log($scope.data)
+      //
+      };
+  });

@@ -27,20 +27,34 @@
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-      <table class="table">
+      <table>
         <tr>
-          <th>When</th>
-          <th>Total Expense</th>
-          <th>Spent on food</th>
-          <th>Spent on party </th>
-          <th>Spent on travelling</th>
-        </tr>
-        <tr>
-          <td>Always</td>
-          <td>{{totalExpenseAmount}}</td>
-          <td>{{totalFood}}</td>
-          <td>{{totalParty}}</td>
-          <td>{{totalTravel}}</td>
+          <td>
+              <table class="table">
+                <tr>
+                  <th>Category</th>
+                </tr>
+                <tr ng-repeat="category in categories">
+                  <td>{{category.title}}</td>
+                </tr>
+                <tr>
+                  <td>Total expenses</td>
+                </tr>
+              </table>
+          </td>
+          <td>
+              <table class="table">
+                <tr>
+                  <th>Expenses</th>
+                </tr>
+                <tr ng-repeat="total in totals">
+                  <td>{{total}}</td>
+                </tr>
+                <tr>
+                  <td>{{totalExpenseAmount}}</td>
+                </tr>
+              </table>
+          </td>
         </tr>
       </table>
     </div>
@@ -51,6 +65,8 @@
   <div class="row">
     <div class="col-lg-2"></div>
     <div class="col-lg-4">
+      <button ng-click="createLabels()" class="btn button-default">Create Labels</button>
+      <button ng-click="calculateTotals()" class="btn button-default">Calculate Totals</button>
         <canvas id="pie"
                 class="chart chart-pie"
                 chart-data="data"
@@ -59,12 +75,6 @@
         </canvas>
     </div>
     <div class="col-lg-4">
-      <canvas id="pie"
-              class="chart chart-pie"
-              chart-data="data"
-              chart-labels="labels"
-              chart-legend="true">
-      </canvas>
     </div>
     <div class="col-lg-2"></div>
   </div>
