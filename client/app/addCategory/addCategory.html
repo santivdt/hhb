@@ -9,12 +9,13 @@
         <input class="form-control" id="category" placeholder="Add category" required ng-model="category.title"></input>
       </div>
       <button class="btn btn-default" ng-click="addCategory()">Add Category</button>
+
     </form>
 
-
+    <button class="btn btn-default" ng-click="calculateTotals()">Calculate Totals</button>
   </div>
   <div class="col-md-2">
-    <span ç>{{category.title}}</span></div>
+    <span>{{category.title}}</span></div>
 </div>
 <div class="row">
   <div class="col-md-2"></div>
@@ -28,7 +29,7 @@
       </tr>
       <tr ng-repeat="category in categories">
         <td>{{category.title}}</td>
-        <td></td>
+        <td>{{category.used}}</td>
         <td>
           <span class="glyphicon  glyphicon-trash" ng-click="deleteCategory(category._id)"></span>
         </td>

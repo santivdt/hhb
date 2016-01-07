@@ -5,6 +5,14 @@ angular.module('hhbApp')
     $stateProvider
       .state('addCategory', {
         url: '/addCategory',
+        resolve: {
+              categories:  function($http){
+                  return $http.get('/api/categories');
+              },
+              entries:  function($http){
+                  return $http.get('/api/entries');
+              }
+          },
         templateUrl: 'app/addCategory/addCategory.html',
         controller: 'AddCategoryCtrl'
       });
