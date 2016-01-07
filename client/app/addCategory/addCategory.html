@@ -1,9 +1,6 @@
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
-    <!--<tags-input ng-model="tags">-->
-      <!--<auto-complete source="loadItems($query)"></auto-complete>-->
-    <!--</tags-input>-->
     <form class="form-inline">
       <div class="form-group ">
         <input class="form-control" id="category" placeholder="Add category" required ng-model="category.title"></input>
@@ -11,8 +8,9 @@
       <button class="btn btn-default" ng-click="addCategory()">Add Category</button>
 
     </form>
-
+<br>
     <button class="btn btn-default" ng-click="calculateTotals()">Calculate Totals</button>
+    <button class="btn btn-default" data-toggle="modal" data-target="#deleteCategory">Edit categories</button>
   </div>
   <div class="col-md-2">
     <span>{{category.title}}</span></div>
@@ -31,7 +29,7 @@
         <td>{{category.title}}</td>
         <td>{{category.used}}</td>
         <td>
-          <span class="glyphicon  glyphicon-trash" ng-click="deleteCategory(category._id)"></span>
+          <span class="glyphicon  glyphicon-trash" data-toggle="modal" data-target="#deleteCategory"></span>
         </td>
       </tr>
     </table>
@@ -43,3 +41,66 @@
   <div class="col-md-4"></div>
   <div class="col-md-2"></div>
 </div>
+
+<!-- Modal to select what happens when deleting a category -->
+<div class="modal fade" id="deleteCategory" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit category</h4>
+            </div>
+            <div class="modal-body">
+                What do you want to do with the entries in the category?
+                <br>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="deleteAllEntries"> Delete all entries in category
+                    </label>
+                </div>
+                <div ng-show="deleteAllEntries">
+                    Which category?
+                    <div class="form-group">
+                        <select class="form-control" ng-model="categoryToDelete">
+                            <option ng-repeat="category in categories" ng-click="test()">{{category.title}}</option>
+                        </select>
+                        <br>
+                        <button class="btn btn-danger" ng-click="deleteEntriesByCategory(categoryToDelete)" data-dismiss="modal" >Delete</button>
+                    </div>
+
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="changeCategory"> Assign all entries in specific to different category
+                    </label>
+                </div>
+                <div ng-show="changeCategory">
+                    <form class="form-inline">
+                        Assign all entries in
+                        <div class="form-group">
+                            <select class="form-control" ng-model="oldCategory">
+                                <option ng-repeat="category in categories" ng-click="test()">{{category.title}}</option>
+                            </select>
+                            to
+                            <select class="form-control" ng-model="newCategory">
+                                <option ng-repeat="category in categories" ng-click="test()">{{category.title}}</option>
+                            </select>
+                        </div>
+                    </form>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="deleteOldCat">Do you want to delete the old category?
+                        </label>
+                    </div>
+                    <button class="btn btn-default" ng-click="assignCat(oldCategory, newCategory)" data-dismiss="modal">Go!</button>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="" data-dismiss="modal">Ok</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
