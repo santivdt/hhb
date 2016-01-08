@@ -3,13 +3,13 @@
 
 angular.module('hhbApp')
     .filter('sumByKeyAdvanced', function () {
-        return function(input, keyToCount, keyToCompare, valueToCompare, keyToCompare2, valueToCompare2) {
-            if (typeof(input) === 'undefined' || typeof(keyToCount) === 'undefined') {
+        return function(input, keyToCount, keyToCompare, valueToCompare) {
+            if (typeof(input) === 'undefined' || typeof(keyToCount) === 'undefined') || typeof(keyToCompare) === 'undefined' || typeof(valueToCompare) === 'undefined')) {
                 return 0;
             }
             var sum = 0;
             for (var i = input.length - 1; i >= 0; i--) {
-                if(input[i][keyToCompare] == valueToCompare && input[i][keyToCompare2] == valueToCompare2 && typeof(input[i][keyToCount]) !== 'undefined') {
+                if(input[i][keyToCompare] == valueToCompare && typeof(input[i][keyToCount]) !== 'undefined') {
                     sum += parseInt(input[i][keyToCount]);
                 }
             }

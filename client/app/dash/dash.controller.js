@@ -8,8 +8,7 @@ angular.module('hhbApp')
       $scope.entries = entries.data;
 
       // calculate totals
-      $scope.totalExpenseAmount = $filter('sumByKey')($scope.entries, 'amount', 'flow', 'expense');
-      $scope.totalIncomeAmount = $filter('sumByKey')($scope.entries, 'amount', 'flow', 'income');
+      $scope.totalExpenseAmount = $filter('sumByKey')($scope.entries, 'amount');
 
       //calculate totals with flexible categories
       $scope.calculateTotals = function (){
