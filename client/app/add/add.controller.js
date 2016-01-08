@@ -3,7 +3,6 @@
 angular.module('hhbApp')
     .controller('AddCtrl', function ($scope, $http, $state, categories) {
         $scope.formData = {};
-        $scope.formData.flow = 'expense';
         $scope.formData.date = new Date();
         $scope.formData.period = 'Monthly';
         $scope.formData.category = 'Food';

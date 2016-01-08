@@ -12,28 +12,11 @@
         </div>
         <div class="col-md-8">
             <form name="addForm">
-                <div class="form-group ">
-                    <label>Expense/Income?</label>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" id="expense" value="expense" ng-model="formData.flow" checked="checked">
-                            Expense
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" id="income" value="income" ng-model="formData.flow">
-                            Income
-                        </label>
-                    </div>
-                </div>
                 <date-form></date-form>
                 <amount-form></amount-form>
                 <description-form></description-form>
                 <categories-menu></categories-menu>
                 <period-menu></period-menu>
-
-
             </form>
 
             <button type="submit" class="btn btn-bitbucket" ng-click="addEntry(1)">Add Another</button>

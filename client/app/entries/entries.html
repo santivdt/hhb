@@ -78,7 +78,6 @@
 
 			<table class="table">
 				<tr>
-					<th></th>
 					<th ng-click="orderProp === 'date' ? orderProp = '-date' : orderProp = 'date'" ng-show="dateCheck">
 						<span class="pointer">Date</span>
 						<span ng-show="orderProp == 'date'" class="glyphicon glyphicon-arrow-down"></span>
@@ -99,11 +98,7 @@
 				</tr>
 
 
-				<tr ng-repeat="entry in entries  | filter:{description: query, amount: query2 } | keyValueFilter:'flow':expenseCheck:incomeCheck | dateFilter:startDate:endDate | orderBy:orderProp">
-				<td ng-show='flowCheck'>
-						<span class="glyphicon glyphicon-minus" style="color:#f49a9a" ng-show="entry.flow == 'expense'"></span>
-						<span class="glyphicon glyphicon-plus" style="color:#d2fca1" ng-show="entry.flow == 'income'"></span>
-					</td>
+				<tr ng-repeat="entry in entries  | filter:{description: query, amount: query2 } | dateFilter:startDate:endDate | orderBy:orderProp">
 					<td ng-show="dateCheck">
 
 						{{entry.date | date: 'dd-MM-yyyy'}}
@@ -178,12 +173,6 @@
 				</p>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" value="" ng-model="flowCheck">
-						Flow
-					</label>
-				</div>
-				<div class="checkbox">
-					<label>
 						<input type="checkbox" value="" ng-model="dateCheck">
 						Date
 					</label>
@@ -211,27 +200,7 @@
 						<input type="checkbox" value="" ng-model="periodCheck">
 						Period
 					</label>
-
-
-
-          <!-- checkboxes to only show income/expense-->
-          <br>
-          <br>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" ng-model="incomeCheck" ng-true-value="'income'"> Show income
-            </label>
-          </div>
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" ng-model="expenseCheck" ng-true-value="'expense'"> Show expenses
-            </label>
-          </div>
-
-
-
-        </div>
-        <div class="modal-footer">
+				</div<div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
 

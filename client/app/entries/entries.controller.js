@@ -7,10 +7,6 @@ angular.module('hhbApp')
     $scope.amountCheck = true;
     $scope.descriptionCheck = true;
     $scope.categoryCheck = true;
-    $scope.flowCheck = true;
-    $scope.incomeCheck = 'income';
-    $scope.expenseCheck = 'expense';
-    $scope.formData.flow = 'expense';
     $scope.formData.date = new Date();
     $scope.formData.period = 'Monthly';
     $scope.formData.category = 'Food';
@@ -76,6 +72,6 @@ angular.module('hhbApp')
         console.log('close');
         close();
     };
-        
+
 });
 
