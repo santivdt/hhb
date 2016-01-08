@@ -6,6 +6,8 @@
 'use strict';
 import Thing from '../api/thing/thing.model';
 import User from '../api/user/user.model';
+import Entry from '../api/entry/entry.model';
+import Category from '../api/category/category.model';
 
 Thing.find({}).removeAsync()
   .then(() => {
@@ -57,3 +59,59 @@ User.find({}).removeAsync()
       console.log('finished populating users');
     });
   });
+
+//sample Data entries added by Santi
+Entry.find({}).removeAsync()
+    .then(() => {
+    Entry.createAsync(
+    {date: new Date(),
+    description: 'Drankjes met de meiden',
+    category: 'Party',
+    amount: 15,
+    period: 'Monthly'},
+    {date: new Date(),
+    description: 'Met de trein naar Grun',
+    category: 'Travel',
+    amount: 30,
+    period: 'Monthly'},
+    {date: new Date(),
+    description: 'Sushi Dushi',
+    category: 'Food',
+    amount: 49,
+    period: 'Monthly'},
+    {date: new Date(),
+    description: '2015',
+    category: 'Food',
+    amount: 3,
+    period: 'Monthly'},
+    {date: new Date(),
+    description: 'Albert Heijn',
+    category: 'Food',
+    amount: 120,
+    period: 'Monthly'},
+    {date: new Date(),
+    description: 'Bus',
+    category: 'Travel',
+    amount: 8,
+    period: 'Monthly'})
+    .then(() => {
+    console.log('finished populating entries');
+    });
+});
+
+//populate categories
+
+Category.find({}).removeAsync()
+    .then(() => {
+    Category.createAsync({
+        title: 'Party',
+    },{
+        title: 'Food',
+    }, {
+        title: 'Travel',
+    })
+    .then(() => {
+    console.log('finished populating categories');
+    });
+});
+
