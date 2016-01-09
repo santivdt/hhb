@@ -7,10 +7,6 @@ angular.module('hhbApp')
       $scope.categories = categories.data;
       $scope.entries = entries.data;
 
-      //modal data
-      $scope.items = ['item1', 'item2', 'item3'];
-      $scope.animationsEnabled = true;
-
 
       // when submitting the category, send the input to the node API
     $scope.addCategory = function() {
@@ -18,7 +14,7 @@ angular.module('hhbApp')
       $http.post('/api/categories', $scope.category)
         .success(function(data) {
           $scope.category = {}; // clear the form so our user is ready to enter another
-          $scope.categories = data;
+          $scope.categories.push(data);
           console.log(data);
         })
         .error(function(categories) {
@@ -42,9 +38,7 @@ angular.module('hhbApp')
       $scope.deleteCategory = function(id) {
           $http.delete('/api/categories/' + id)
               .success(function(data) {
-                  $scope.categories =$scope.categories.filter(function( obj ) {
-                      return obj._id !== id;
-                  });
+                  $scope.categories.pop(data);
                   console.log(data);
               })
               .error(function(data) {
@@ -91,6 +85,7 @@ angular.module('hhbApp')
           //delete the category
           $http.delete('/api/categories/' + id)
               .success(function(data) {
+                  $scope.categories.pop(data);
                   console.log(categoryToDelete + ' is sucessfully deleted. Hopefully you really wanted this ;)');
               })
               .error(function(data) {
@@ -101,9 +96,14 @@ angular.module('hhbApp')
 
       //function to assign all entries of a cat to a different cat
       $scope.assignCat = function(oldCategory, newCategory) {
+          console.log('change category');
           for (var i = 0; i < $scope.entries.length; i++){
+              console.log($scope.entries[i].category);
+              console.log('oldcat' + oldCategory);
+              console.log('newcat' + newCategory);
               if ($scope.entries[i].category === oldCategory){
                   $scope.entries[i].category = newCategory;
+                  $scope.calculateTotals();
               }
           }
 
@@ -117,8 +117,9 @@ angular.module('hhbApp')
               }
 
           //delete old category
-          $http.delete('/api/entries/' + id)
+          $http.delete('/api/categories/' + id)
               .success(function(data) {
+                  $scope.categories.pop(data);
                   console.log(oldCategory + ' deleted succesfully');
               }).error(function(data) {
               console.log('Error: ' + data);

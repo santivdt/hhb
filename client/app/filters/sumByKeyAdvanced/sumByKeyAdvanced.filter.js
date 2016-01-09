@@ -4,7 +4,7 @@
 angular.module('hhbApp')
     .filter('sumByKeyAdvanced', function () {
         return function(input, keyToCount, keyToCompare, valueToCompare) {
-            if (typeof(input) === 'undefined' || typeof(keyToCount) === 'undefined') || typeof(keyToCompare) === 'undefined' || typeof(valueToCompare) === 'undefined')) {
+            if (typeof(input) === 'undefined' || typeof(keyToCount) === 'undefined' || typeof(keyToCompare) === 'undefined' || typeof(valueToCompare) === 'undefined') {
                 return 0;
             }
             var sum = 0;
