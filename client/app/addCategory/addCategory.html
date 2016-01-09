@@ -29,7 +29,7 @@
         <td>{{category.title}}</td>
         <td>{{category.used}}</td>
         <td>
-          <span class="glyphicon  glyphicon-trash" data-toggle="modal" data-target="#deleteCategory"></span>
+          <span class="glyphicon  glyphicon-trash" ng-click="categoryToDelete = category.id" data-toggle="modal" data-target="#deleteCategory"></span>
         </td>
       </tr>
     </table>
@@ -60,8 +60,8 @@
                 <div ng-show="deleteAllEntries">
                     Which category?
                     <div class="form-group">
-                        <select class="form-control" ng-model="categoryToDelete">
-                            <option ng-repeat="category in categories" ng-click="test()">{{category.title}}</option>
+                        <select class="form-control" ng-model="categoryToDelete" ng-options="i.id as i.title for i in categories">
+                            <option></option>
                         </select>
                         <br>
                         <button class="btn btn-danger" ng-click="deleteEntriesByCategory(categoryToDelete)" data-dismiss="modal" >Delete</button>
