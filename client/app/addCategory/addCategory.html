@@ -1,3 +1,5 @@
+<div class="container-fluid">
+
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
@@ -6,14 +8,11 @@
         <input class="form-control" id="category" placeholder="Add category" required ng-model="category.title"></input>
       </div>
       <button class="btn btn-default" ng-click="addCategory()">Add Category</button>
-
     </form>
-<br>
-    <button class="btn btn-default" ng-click="calculateTotals()">Calculate Totals</button>
+    <br>
     <button class="btn btn-default" data-toggle="modal" data-target="#deleteCategory">Edit categories</button>
   </div>
-  <div class="col-md-2">
-    <span>{{category.title}}</span></div>
+  <div class="col-md-2"></div>
 </div>
 <div class="row">
   <div class="col-md-2"></div>
@@ -33,13 +32,15 @@
         </td>
       </tr>
     </table>
-    <button class="btn btn-danger" type="button" ng-click="deleteCategories()">
+    <button class="btn btn-danger" type="button" ng-click="deleteAllCategories()">
       <span class="glyphicon glyphicon-trash"></span>
       &nbsp;Delete all categories
     </button>
   </div>
   <div class="col-md-4"></div>
   <div class="col-md-2"></div>
+</div>
+
 </div>
 
 <!-- Modal to select what happens when deleting a category -->

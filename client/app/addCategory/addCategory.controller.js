@@ -1,45 +1,42 @@
 'use strict';
 
 angular.module('hhbApp')
-  .controller('AddCategoryCtrl', function ($scope, $http, $state, $filter, categories, entries) {
+  .controller('AddCategoryCtrl', function ($scope, $http, $state, $filter, categories, entries, used, categoriesService) {
 
       //bind the data that was loaded on resolve to $scope
       $scope.categories = categories.data;
       $scope.entries = entries.data;
 
-
       // when submitting the category, send the input to the node API
     $scope.addCategory = function() {
-      console.log('addCat');
-      $http.post('/api/categories', $scope.category)
-        .success(function(data) {
-          $scope.category = {}; // clear the form so our user is ready to enter another
-          $scope.categories.push(data);
-          console.log(data);
-        })
-        .error(function(categories) {
-          console.log('Error: ' + categories);
-        })
+        categoriesService.addCategory($scope.category)
+            .success(function(data) {
+              $scope.category = {};
+              $scope.categories.push(data);
+            })
+            .error(function(categories) {
+              console.log('Error: ' + categories);
+            })
     };
-
-      // delete all categories
-      $scope.deleteCategories = function() {
-          $http.delete('/api/categories')
-              .success(function(data) {
-                  $scope.categories = [];
-                  console.log('delete');
-              })
-              .error(function (data) {
-                  console.log('Error: ' + data);
-              })
-      };
 
       // delete a category
       $scope.deleteCategory = function(id) {
-          $http.delete('/api/categories/' + id)
+        categoriesService.deleteCategory(id)
+          .success(function(data) {
+              $scope.categories.pop(data);
+              console.log(data);
+              console.log('delete');
+          })
+          .error(function (data) {
+              console.log('Error: ' + data);
+          })
+      };
+
+      // delete all categories
+      $scope.deleteAllCategories = function() {
+           categoriesService.deleteAllCategories()
               .success(function(data) {
-                  $scope.categories.pop(data);
-                  console.log(data);
+                  $scope.categories = [];
               })
               .error(function(data) {
                   console.log('Error: ' + data);
@@ -47,17 +44,6 @@ angular.module('hhbApp')
       };
 
 
-      // calculate total uses of each category and add them to category array
-      $scope.calculateTotals = function () {
-          $scope.totals = [];
-          for (var i = 0; i < $scope.categories.length; i++) {
-              var category = $scope.categories[i].title;
-              var name = 'total' + (category);
-              $scope[name] = $filter('sumRecordsWithValue')($scope.entries, 'category', category);
-              $scope.categories[i].used = $scope[name];
-          }
-
-      };
 
       // delete all entries in specific category
       $scope.deleteEntriesByCategory = function(categoryToDelete){
@@ -70,16 +56,19 @@ angular.module('hhbApp')
               }
           }
 
-          //delete all the entries in the category
-          for (var i = 0; i<$scope.entries.length; i++){
-                  if ($scope.entries[i].category == categoryToDelete){
-                      $http.delete('/api/entries/' + $scope.entries[i]._id)
-                          .success(function(data) {
-                              console.log(' All entries deleted from ' + categoryToDelete + ' succesfully');
-                          }).error(function(data) {
-                              console.log('Error: ' + data);
-                          });
-                  }
+
+          if ($scope.categories.used != 0) {
+              //delete all the entries in the category
+              for (var i = 0; i<$scope.entries.length; i++){
+                      if ($scope.entries[i].category == categoryToDelete){
+                          $http.delete('/api/entries/' + $scope.entries[i]._id)
+                              .success(function(data) {
+                                  console.log(' All entries deleted from ' + categoryToDelete + ' succesfully');
+                              }).error(function(data) {
+                                  console.log('Error: ' + data);
+                              });
+                      }
+              }
           }
 
           //delete the category
