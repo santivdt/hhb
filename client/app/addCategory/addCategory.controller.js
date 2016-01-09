@@ -46,13 +46,14 @@ angular.module('hhbApp')
 
 
       // delete all entries in specific category
-      $scope.deleteEntriesByCategory = function(categoryToDelete){
+      $scope.deleteEntriesInCategory = function(categoryToDelete){
           console.log('function called, deleting entries in ' + categoryToDelete + ' and category');
 
           //get id of category to delete
           for (var j = 0; j<$scope.categories.length; j++){
               if ($scope.categories[j].title == categoryToDelete) {
                   var id = $scope.categories[j]._id;
+                  console.log('the id of ' + categoryToDelete + ' is ' + id);
               }
           }
 
@@ -72,7 +73,7 @@ angular.module('hhbApp')
           }
 
           //delete the category
-          $http.delete('/api/categories/' + id)
+          categoriesService.deleteCategory(id)
               .success(function(data) {
                   $scope.categories.pop(data);
                   console.log(categoryToDelete + ' is sucessfully deleted. Hopefully you really wanted this ;)');
@@ -106,7 +107,7 @@ angular.module('hhbApp')
               }
 
           //delete old category
-          $http.delete('/api/categories/' + id)
+              categoriesService.deleteCategory(id)
               .success(function(data) {
                   $scope.categories.pop(data);
                   console.log(oldCategory + ' deleted succesfully');

@@ -28,7 +28,7 @@
         <td>{{category.title}}</td>
         <td>{{category.used}}</td>
         <td>
-          <span class="glyphicon  glyphicon-trash" ng-click="categoryToDelete = category.id" data-toggle="modal" data-target="#deleteCategory"></span>
+          <span class="glyphicon  glyphicon-trash" ng-click="categoryToDelete = category.title" data-toggle="modal" data-target="#deleteCategory"></span>
         </td>
       </tr>
     </table>
@@ -43,7 +43,13 @@
 
 </div>
 
-<!-- Modal to select what happens when deleting a category -->
+
+
+
+
+
+
+ <!--Modal to select what happens when deleting a category-->
 <div class="modal fade" id="deleteCategory" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -51,49 +57,50 @@
                 <h4 class="modal-title">Edit category</h4>
             </div>
             <div class="modal-body">
-                What do you want to do with the entries in the category?
-                <br>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" ng-model="deleteAllEntries"> Delete all entries in category
-                    </label>
-                </div>
-                <div ng-show="deleteAllEntries">
-                    Which category?
-                    <div class="form-group">
-                        <select class="form-control" ng-model="categoryToDelete" ng-options="i.id as i.title for i in categories">
-                            <option></option>
-                        </select>
-                        <br>
-                        <button class="btn btn-danger" ng-click="deleteEntriesByCategory(categoryToDelete)" data-dismiss="modal" >Delete</button>
-                    </div>
-
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" ng-model="changeCategory"> Assign all entries in specific to different category
-                    </label>
-                </div>
-                <div ng-show="changeCategory">
-                    <form class="form-inline">
-                        Assign all entries in
-                        <div class="form-group">
-                            <select class="form-control" ng-model="oldCategory">
-                                <option ng-repeat="category in categories" ng-click="test()">{{category.title}}</option>
-                            </select>
-                            to
-                            <select class="form-control" ng-model="newCategory">
-                                <option ng-repeat="category in categories" ng-click="test()">{{category.title}}</option>
-                            </select>
-                        </div>
-                    </form>
+                <form>
+                    What do you want to do with the entries in the category?
+                    <br>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" ng-model="deleteOldCat">Do you want to delete the old category?
+                            <input type="checkbox" ng-model="formData.deleteAllEntries"> Delete all entries in category
                         </label>
                     </div>
-                    <button class="btn btn-default" ng-click="assignCat(oldCategory, newCategory)" data-dismiss="modal">Go!</button>
+                    <div ng-show="formData.deleteAllEntries">
+                        Which category?
+                        <div class="form-group">
+                            <select class="form-control" ng-model="formData.categoryToDelete">
+                                <option ng-repeat="category in categories">{{category.title}}</option>
+                            </select>
+                            <br>
+                            <button class="btn btn-danger" ng-click="deleteEntriesInCategory(formData.categoryToDelete)" data-dismiss="modal" >Delete</button>
+                        </div>
 
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="formData.changeCategory"> Assign all entries in specific to different category
+                        </label>
+                    </div>
+                    <div ng-show="formData.changeCategory">
+                        <form class="form-inline">
+                            Assign all entries in
+                            <div class="form-group">
+                                <select class="form-control" ng-model="oldCategory">
+                                    <option ng-repeat="category in categories" ng-click="test()">{{category.title}}</option>
+                                </select>
+                                to
+                                <select class="form-control" ng-model="newCategory">
+                                    <option ng-repeat="category in categories" ng-click="test()">{{category.title}}</option>
+                                </select>
+                            </div>
+                        </form>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="deleteOldCat">Do you want to delete the old category?
+                            </label>
+                        </div>
+                        <button class="btn btn-default" ng-click="assignCat(oldCategory, newCategory)" data-dismiss="modal">Go!</button>
+                </form>
 
             </div>
             <div class="modal-footer">
