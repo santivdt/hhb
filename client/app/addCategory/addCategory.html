@@ -1,3 +1,5 @@
+<div class="container-fluid">
+
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
@@ -6,14 +8,11 @@
         <input class="form-control" id="category" placeholder="Add category" required ng-model="category.title"></input>
       </div>
       <button class="btn btn-default" ng-click="addCategory()">Add Category</button>
-
     </form>
-<br>
-    <button class="btn btn-default" ng-click="calculateTotals()">Calculate Totals</button>
+    <br>
     <button class="btn btn-default" data-toggle="modal" data-target="#deleteCategory">Edit categories</button>
   </div>
-  <div class="col-md-2">
-    <span>{{category.title}}</span></div>
+  <div class="col-md-2"></div>
 </div>
 <div class="row">
   <div class="col-md-2"></div>
@@ -29,17 +28,19 @@
         <td>{{category.title}}</td>
         <td>{{category.used}}</td>
         <td>
-          <span class="glyphicon  glyphicon-trash" data-toggle="modal" data-target="#deleteCategory"></span>
+          <span class="glyphicon  glyphicon-trash" ng-click="categoryToDelete = category.id" data-toggle="modal" data-target="#deleteCategory"></span>
         </td>
       </tr>
     </table>
-    <button class="btn btn-danger" type="button" ng-click="deleteCategories()">
+    <button class="btn btn-danger" type="button" ng-click="deleteAllCategories()">
       <span class="glyphicon glyphicon-trash"></span>
       &nbsp;Delete all categories
     </button>
   </div>
   <div class="col-md-4"></div>
   <div class="col-md-2"></div>
+</div>
+
 </div>
 
 <!-- Modal to select what happens when deleting a category -->
@@ -60,8 +61,8 @@
                 <div ng-show="deleteAllEntries">
                     Which category?
                     <div class="form-group">
-                        <select class="form-control" ng-model="categoryToDelete">
-                            <option ng-repeat="category in categories" ng-click="test()">{{category.title}}</option>
+                        <select class="form-control" ng-model="categoryToDelete" ng-options="i.id as i.title for i in categories">
+                            <option></option>
                         </select>
                         <br>
                         <button class="btn btn-danger" ng-click="deleteEntriesByCategory(categoryToDelete)" data-dismiss="modal" >Delete</button>

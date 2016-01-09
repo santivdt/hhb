@@ -6,12 +6,15 @@ angular.module('hhbApp')
       .state('addCategory', {
         url: '/addCategory',
         resolve: {
-              categories:  function($http){
-                  return $http.get('/api/categories');
-              },
-              entries:  function($http){
-                  return $http.get('/api/entries');
-              }
+            entries:  function($http){
+                return $http.get('/api/entries');
+            },
+            categories: function(categoriesService) {
+                return categoriesService.getCategories();
+            },
+            used: function(categoriesService, categories, entries) {
+                return categoriesService.calculateTotals(categories.data, entries.data);
+            }
           },
         templateUrl: 'app/addCategory/addCategory.html',
         controller: 'AddCategoryCtrl'
