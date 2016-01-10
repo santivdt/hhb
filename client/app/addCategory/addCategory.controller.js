@@ -92,6 +92,8 @@ angular.module('hhbApp')
               console.log('oldcat' + oldCategory);
               console.log('newcat' + newCategory);
               if ($scope.entries[i].category === oldCategory){
+                    // TODO maak hier api call van zodat het in database update ipv in view
+                  $http.post('/api/categories/' + id, newCategory)
                   $scope.entries[i].category = newCategory;
                   $scope.calculateTotals();
               }

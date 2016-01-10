@@ -43,13 +43,7 @@
 
 </div>
 
-
-
-
-
-
-
- <!--Modal to select what happens when deleting a category-->
+<!-- Modal to select what happens when deleting a category -->
 <div class="modal fade" id="deleteCategory" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -75,36 +69,35 @@
                             <button class="btn btn-danger" ng-click="deleteEntriesInCategory(formData.categoryToDelete)" data-dismiss="modal" >Delete</button>
                         </div>
 
-                    </div>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="changeCategory"> Assign all entries in specific to different category
+                    </label>
+                </div>
+                <div ng-show="changeCategory">
+                    <form class="form-inline">
+                        Assign all entries in
+                        <div class="form-group">
+                            <select class="form-control" ng-model="oldCategory">
+                                <option ng-repeat="category in categories">{{category.title}}</option>
+                            </select>
+                            to
+                            <select class="form-control" ng-model="newCategory">
+                                <option ng-repeat="category in categories">{{category.title}}</option>
+                            </select>
+                        </div>
+                    </form>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" ng-model="formData.changeCategory"> Assign all entries in specific to different category
+                            <input type="checkbox" ng-model="deleteOldCat">Do you want to delete the old category?
                         </label>
                     </div>
-                    <div ng-show="formData.changeCategory">
-                        <form class="form-inline">
-                            Assign all entries in
-                            <div class="form-group">
-                                <select class="form-control" ng-model="oldCategory">
-                                    <option ng-repeat="category in categories" ng-click="test()">{{category.title}}</option>
-                                </select>
-                                to
-                                <select class="form-control" ng-model="newCategory">
-                                    <option ng-repeat="category in categories" ng-click="test()">{{category.title}}</option>
-                                </select>
-                            </div>
-                        </form>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" ng-model="deleteOldCat">Do you want to delete the old category?
-                            </label>
-                        </div>
-                        <button class="btn btn-default" ng-click="assignCat(oldCategory, newCategory)" data-dismiss="modal">Go!</button>
-                </form>
+                    <button class="btn btn-default" ng-click="assignCat(oldCategory, newCategory)" data-dismiss="modal">Go!</button>
+
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="" data-dismiss="modal">Ok</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
         </div>

@@ -1,62 +1,96 @@
 <div class="container-fluid">
-  <!-- ....... -->
   <div class="row">
     <div class="col-md-2"></div>
-    <div class="col-md-8">
-      <table class="table">
-        <tr>
-          <th>When</th>
-          <th>Total Expense</th>
-          <th>Total Income</th>
-          <th>Balance</th>
-        </tr>
-        <tr>
-          <td>Always</td>
-          <td>{{totalExpenseAmount}}</td>
-          <td>{{totalIncomeAmount}}</td>
-          <td>
-            {{totalIncomeAmount - totalExpenseAmount}}
-          </td>
-        </tr>
-      </table>
+    <div class="col-md-8 dashheader">
+
+      <h1>{{currentMonth}}</h1> <span class="glyphicon glyphicon-chevron-down"></span><br>
+
+      <uib-progress max="2500">
+        <uib-bar value="vasteLasten" type="info" uib-tooltip="Vaste Lasten">
+          {{vasteLasten | currency : "€" : 0}}
+        </uib-bar>
+        <uib-bar value="totalExpenseAmount" type="" uib-tooltip="Expenses">
+          {{totalExpenseAmount | currency : "€" : 0}}
+        </uib-bar>
+      </uib-progress>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <uib-accordion>
+        <uib-accordion-group heading="General Data">
+
+
+          <table class="table">
+            <tr>
+              <th>Month</th>
+              <th>Total Expense</th>
+              <th>Balance</th>
+            </tr>
+            <tr>
+              <td>{{currentMonth}}</td>
+              <td>{{totalExpenseAmount}}</td>
+              <td>
+                {{salary - vasteLasten - totalExpenseAmount}}
+              </td>
+            </tr>
+          </table>
+        </uib-accordion-group>
+
+        <uib-accordion-group heading="Per category" ng-click="calculateTotals()">
+          <div class="col-md-6">
+
+            <table class="table">
+              <tr>
+                <th>Category</th>
+                <th>Total</th>
+              </tr>
+              <tr ng-repeat="category in categories">
+                <td>{{category.title}}</td>
+                <td>{{category.total}}</td>
+              </tr>
+              <tr>
+                <td>Total expenses</td>
+                <td>{{totalExpenseAmount}}</td>
+              </tr>
+            </table>
+
+          </div>
+          <div class="col-md-6">
+            <canvas id="pie"
+                    class="chart chart-pie"
+                    chart-data="totals"
+                    chart-labels="labels"
+                    chart-legend="true">
+            </canvas>
+          </div>
+        </uib-accordion-group>
+        <uib-accordion-group heading="View entries">
+        </uib-accordion-group>
+
+        <uib-accordion-group heading="Compare months">
+
+        </uib-accordion-group>
+
+      </uib-accordion>
+    </div>
+    <div class="col-md-1">
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-2"></div>
-    <div class="col-md-8">
-      <table>
-        <tr>
-          <td>
-              <table class="table">
-                <tr>
-                  <th>Category</th>
-                </tr>
-                <tr ng-repeat="category in categories">
-                  <td>{{category.title}}</td>
-                </tr>
-                <tr>
-                  <td>Total expenses</td>
-                </tr>
-              </table>
-          </td>
-          <td>
-              <table class="table">
-                <tr>
-                  <th>Expenses</th>
-                </tr>
-                <tr ng-repeat="total in totals">
-                  <td>{{total}}</td>
-                </tr>
-                <tr>
-                  <td>{{totalExpenseAmount}}</td>
-                </tr>
-              </table>
-          </td>
-        </tr>
-      </table>
+
+    <div class="col-md-4 col-lg-4">
+
+
+
+    </div>
+    <div class="cold-md-4 col-lg-4">
+
     </div>
     <div class="col-md-2">
     </div>
@@ -65,14 +99,6 @@
   <div class="row">
     <div class="col-lg-2"></div>
     <div class="col-lg-4">
-      <button ng-click="createLabels()" class="btn button-default">Create Labels</button>
-      <button ng-click="calculateTotals()" class="btn button-default">Calculate Totals</button>
-        <canvas id="pie"
-                class="chart chart-pie"
-                chart-data="data"
-                chart-labels="labels"
-                chart-legend="true">
-        </canvas>
     </div>
     <div class="col-lg-4">
     </div>

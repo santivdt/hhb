@@ -108,6 +108,12 @@ export function destroyAll(req, res) {
     .catch(handleError(res));
 }
 
-
-
-
+////search API
+//export function search(req, res){
+//  Entry.findAsync(req.query, function(err, elements){
+//    if(err)
+//      res.status(500).send(err);
+//    else{
+//      res.json(elements);
+//    }
+//})

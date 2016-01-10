@@ -10,38 +10,38 @@ angular.module('hhbApp')
       // calculate totals
       $scope.totalExpenseAmount = $filter('sumByKey')($scope.entries, 'amount');
 
+      //get some dates
+      var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      $scope.currentMonth = months[moment().month()];
+
+      //progressbara Data
+      $scope.salary = 2500;
+
       //calculate totals with flexible categories
       $scope.calculateTotals = function (){
           console.log('calculateTotals');
-          $scope.totals = [];
           for (var i = 0; i < $scope.categories.length; i++) {
               var category = $scope.categories[i].title;
-              console.log(category);
               var output = 'total' + (category);
-              console.log(output);
-              $scope[output] = $filter('sumByKeyAdvanced')($scope.entries, 'amount', 'category', category, 'flow', 'expense');
-              console.log($scope[output]);
-              $scope.totals.push($scope[output]);
-              console.log($scope.totals);
-              $scope.data = $scope.totals;
+              $scope[output] = $filter('sumByKeyAdvanced')($scope.entries, 'amount', 'category', category);
+              $scope.categories[i].total = $scope[output];
           }
-      };
 
-      //create array from all categories and array from totals
-      $scope.createLabels = function () {
+          //create array from all categories and all totals
           console.log('create labels');
           console.log($scope.categories.length);
           $scope.labels = [];
           for (var i = 0; i < $scope.categories.length; i++) {
-            $scope.labels.push($scope.categories[i].title);
-            console.log($scope.labels);
+              $scope.labels.push($scope.categories[i].title);
+              console.log($scope.labels);
           }
-      //      $scope.data = [];
-      //    for (var i = 0; i < $scope.categories.length; i++) {
-      //        $scope.data.push($scope.totals[i]);
-      //        console.log($scope.totals[i]);
-      //    }
-      //    console.log($scope.data)
-      //
+
+          $scope.totals = [];
+          for (var i = 0; i < $scope.categories.length; i++) {
+              $scope.totals.push($scope.categories[i].total);
+              console.log($scope.totals);
+          }
       };
+
+      $scope.vasteLasten = 566;
   });
