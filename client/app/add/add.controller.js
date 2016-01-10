@@ -6,7 +6,6 @@ angular.module('hhbApp')
         $scope.formData.date = new Date();
         $scope.formData.period = 'Monthly';
         $scope.formData.category = 'Food';
-        $scope.isCollapsed = false;
         $scope.categories = categories.data;
 
         // when submitting the add form, send the input to the node API
@@ -24,6 +23,10 @@ angular.module('hhbApp')
 
             if (addAnother === 0){
                 $state.go('entries');
+                $scope.formData = {};
+                $scope.formData.date = new Date();
+                $scope.formData.period = 'Monthly';
+                $scope.formData.category = 'Food';
                 console.log('state changed')
             }
         };

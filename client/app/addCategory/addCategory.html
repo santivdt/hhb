@@ -79,11 +79,11 @@
                         Assign all entries in
                         <div class="form-group">
                             <select class="form-control" ng-model="oldCategory">
-                                <option ng-repeat="category in categories" ng-click="test()">{{category.title}}</option>
+                                <option ng-repeat="category in categories">{{category.title}}</option>
                             </select>
                             to
                             <select class="form-control" ng-model="newCategory">
-                                <option ng-repeat="category in categories" ng-click="test()">{{category.title}}</option>
+                                <option ng-repeat="category in categories">{{category.title}}</option>
                             </select>
                         </div>
                     </form>
@@ -97,7 +97,6 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="" data-dismiss="modal">Ok</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
         </div>
