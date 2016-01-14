@@ -22,6 +22,7 @@ function handleError(res, statusCode) {
 function responseWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
+    console.log('entity',entity)
     if (entity) {
       res.status(statusCode).json(entity);
     }
@@ -66,12 +67,19 @@ export function index(req, res) {
     .catch(handleError(res));
 }
 
+// Search entries from the DB
+export function search(req, res) {
+  console.log(req.params);
+  Entry.findAsync({description: req.params.query})
+    .then(responseWithResult(res))
+    .catch(handleError(res));
+}
 // Gets a single Entry from the DB
 export function show(req, res) {
   Entry.findByIdAsync(req.params.id)
-    .then(handleEntityNotFound(res))
-    .then(responseWithResult(res))
-    .catch(handleError(res));
+      .then(handleEntityNotFound(res))
+      .then(responseWithResult(res))
+      .catch(handleError(res));
 }
 
 // Creates a new Entry in the DB
