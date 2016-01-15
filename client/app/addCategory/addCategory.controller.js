@@ -1,7 +1,16 @@
 'use strict';
 
 angular.module('hhbApp')
-  .controller('AddCategoryCtrl', function ($scope, $http, $state, $filter, categories, entries, used, categoriesService) {
+  .controller('AddCategoryCtrl', function ($scope,
+                                           $http,
+                                           $state,
+                                           $filter,
+                                           categories,
+                                           entries,
+                                           used,
+                                           categoriesService,
+                                           $uibModal,
+                                           $log) {
 
       //bind the data that was loaded on resolve to $scope
       $scope.categories = categories.data;
@@ -117,10 +126,55 @@ angular.module('hhbApp')
               console.log('Error: ' + data);
                 });
           }
+      };
+
+    //UIBMODAL
+    $scope.items = ['item1', 'item2', 'item3'];
+
+    $scope.animationsEnabled = true;
+
+    $scope.open = function () {
 
 
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'myModalContent.html',
+        controller: 'ModalInstanceCtrl',
+        resolve: {
+            items: function () {
+                return $scope.items;
+            },
+            categories: function($http) { return $http.get('/api/categories');
+            }
+        }
+      });
 
-      }
+      modalInstance.result.then(function (selectedItem) {
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+    $scope.toggleAnimation = function () {
+      $scope.animationsEnabled = !$scope.animationsEnabled;
+    };
 
   });
 
+angular.module('hhbApp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items, categories) {
+
+    $scope.categories = categories.data;
+    $scope.items = items;
+    $scope.selected = {
+    item: $scope.items[0]
+  };
+
+  $scope.ok = function () {
+    $uibModalInstance.close($scope.selected.item);
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});
