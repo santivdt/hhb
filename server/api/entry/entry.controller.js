@@ -144,9 +144,3 @@ export function destroyAll(req, res) {
     .catch(handleError(res));
 }
 
-<<<<<<< Updated upstream
-
-
-
-=======
->>>>>>> Stashed changes
