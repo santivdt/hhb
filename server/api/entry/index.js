@@ -6,6 +6,7 @@ var controller = require('./entry.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/search/:query', controller.search);
 router.get('/:id', controller.show);
 //router.get('/:query', controller.search);
 //router.get('/test', controller.test);

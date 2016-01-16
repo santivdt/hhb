@@ -44,4 +44,17 @@ angular.module('hhbApp')
       };
 
       $scope.vasteLasten = 566;
+
+
+        //Edit an entry inline
+        $scope.searchEntry = function(query) {
+            $http.get('/api/entries/search/' + query)
+                .success(function(data) {
+                    console.log('search');
+                    console.log(data);
+                })
+                .error(function(data) {
+                    console.log('Error: ' + data);
+                });
+        };
   });
