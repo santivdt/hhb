@@ -74,42 +74,6 @@ export function show(req, res) {
     .catch(handleError(res));
 }
 
-// Search API <3
-//export function search(req, res) {
-//  Entry.findByIdAsync(req)
-//    .then(responseWithResult(res))
-//    .catch(handleError(res));
-//}
-
-////test function Santi geschreven in java niet ecma
-//exports.search = function(req, res) {
-//  Entry.find({'query': req.params.query}).sort('-created').exec(function(err, entries) {
-//    if (err) {
-//      res.render('error', {
-//        status: 500
-//      });
-//    } else {
-//      res.json(entries);
-//    }
-//  });
-//};
-
-//export function test(req,res) {
-//  Entry.findByIdAsync(req.query)
-//    .then(handleEntityNotFound(res))
-//    .then(responseWithResult(res))
-//    .catch(handleError(res));
-//}
-
-
-// wat daphne zei op imsg
-export function search(req, res) {
-      Entry.findAsync({description: '/^' + req.params.description + '/'})
-        .then(responseWithResult(res))
-        .catch(handleError(res));
-    }
-
-
 // Creates a new Entry in the DB
 export function create(req, res) {
   Entry.createAsync(req.body)
@@ -143,4 +107,7 @@ export function destroyAll(req, res) {
     .then(responseWithResult(res))
     .catch(handleError(res));
 }
+
+
+
 

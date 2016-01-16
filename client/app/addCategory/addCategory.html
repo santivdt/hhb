@@ -28,7 +28,7 @@
         <td>{{category.title}}</td>
         <td>{{category.used}}</td>
         <td>
-          <span class="glyphicon  glyphicon-trash" ng-click="categoryToDelete = category.id" data-toggle="modal" data-target="#deleteCategory"></span>
+          <span class="glyphicon  glyphicon-trash" ng-click="categoryToDelete = category.title" data-toggle="modal" data-target="#deleteCategory"></span>
         </td>
       </tr>
     </table>
@@ -51,22 +51,23 @@
                 <h4 class="modal-title">Edit category</h4>
             </div>
             <div class="modal-body">
-                What do you want to do with the entries in the category?
-                <br>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" ng-model="deleteAllEntries"> Delete all entries in category
-                    </label>
-                </div>
-                <div ng-show="deleteAllEntries">
-                    Which category?
-                    <div class="form-group">
-                        <select class="form-control" ng-model="categoryToDelete" ng-options="i.id as i.title for i in categories">
-                            <option></option>
-                        </select>
-                        <br>
-                        <button class="btn btn-danger" ng-click="deleteEntriesByCategory(categoryToDelete)" data-dismiss="modal" >Delete</button>
+                <form>
+                    What do you want to do with the entries in the category?
+                    <br>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="formData.deleteAllEntries"> Delete all entries in category
+                        </label>
                     </div>
+                    <div ng-show="formData.deleteAllEntries">
+                        Which category?
+                        <div class="form-group">
+                            <select class="form-control" ng-model="formData.categoryToDelete">
+                                <option ng-repeat="category in categories">{{category.title}}</option>
+                            </select>
+                            <br>
+                            <button class="btn btn-danger" ng-click="deleteEntriesInCategory(formData.categoryToDelete)" data-dismiss="modal" >Delete</button>
+                        </div>
 
                 </div>
                 <div class="checkbox">
@@ -79,11 +80,11 @@
                         Assign all entries in
                         <div class="form-group">
                             <select class="form-control" ng-model="oldCategory">
-                                <option ng-repeat="category in categories" ng-click="test()">{{category.title}}</option>
+                                <option ng-repeat="category in categories">{{category.title}}</option>
                             </select>
                             to
                             <select class="form-control" ng-model="newCategory">
-                                <option ng-repeat="category in categories" ng-click="test()">{{category.title}}</option>
+                                <option ng-repeat="category in categories">{{category.title}}</option>
                             </select>
                         </div>
                     </form>
@@ -97,7 +98,6 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="" data-dismiss="modal">Ok</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
         </div>
