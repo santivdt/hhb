@@ -22,17 +22,18 @@ angular.module('hhbApp')
           console.log('calculateTotals');
           for (var i = 0; i < $scope.categories.length; i++) {
               var category = $scope.categories[i].title;
-              var output = 'total' + (category);
-              $scope[output] = $filter('sumByKeyAdvanced')($scope.entries, 'amount', 'category', category);
-              $scope.categories[i].total = $scope[output];
+              $scope.categories[i].total = $filter('sumByKeyAdvanced')($scope.entries, 'amount', 'category', category);
+              console.log($scope.categories[i].total);
           }
 
           //create array from all categories and all totals
-          console.log('create labels');
+          console.log('create labels and totals');
           console.log($scope.categories.length);
           $scope.labels = [];
+          $scope.data = [];
           for (var i = 0; i < $scope.categories.length; i++) {
               $scope.labels.push($scope.categories[i].title);
+              $scope.data.push($scope.categories[i].total);
               console.log($scope.labels);
           }
 
@@ -42,6 +43,5 @@ angular.module('hhbApp')
               console.log($scope.totals);
           }
       };
-
       $scope.vasteLasten = 566;
   });

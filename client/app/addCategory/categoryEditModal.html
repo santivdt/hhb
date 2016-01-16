@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <h3 class="modal-title">Edit category {{category.title}}</h3>
+</div>
+<div class="modal-body">
+  What do you want to do with the entries in {{category.title}}?
+  <br>
+  <div class="radio">
+    <label>
+      <input type="radio" ng-model="changeCategory" value="delete"> Delete all entries in {{category.title}}
+    </label>
+  </div>
+
+
+  <div class="radio">
+    <label>
+      <input type="radio" ng-model="changeCategory" value="assign"> Assign all entries in {{category.title}} to different category
+    </label>
+  </div>
+  <div ng-show="changeCategory == 'assign'">
+    <form class="form-inline">
+      <select class="form-control" ng-model="newCat">
+        <option ng-repeat="newCategory in categories| filter: { title: '!'+category.title }">{{newCategory.title}}</option>
+      </select>
+    </form>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model="deleteOldCat">Do you want to delete the old category?
+      </label>
+    </div>
+
+  </div>
+
+
+</div>
+
+<div class="modal-footer">
+  <!--<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>-->
+  <button ng-show="changeCategory == 'assign'" class="btn btn-primary" ng-click="assignCat(category)">Ok</button>
+  <button ng-show="changeCategory == 'delete'" class="btn btn-primary" ng-click="deleteEntriesInCategory(category)">Ok</button>
+  <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

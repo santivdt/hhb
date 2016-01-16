@@ -14,21 +14,21 @@ angular.module('hhbApp')
         function getCategories() {
             return $http.get('/api/categories')
                 ;
-        };
+        }
 
         function addCategory(category) {
             return $http.post('/api/categories', category)
                 .success(function() {
-                    console.log('Category added succsefully');
+                    console.log('Category added successfully');
                 })
                 .error(function(categories) {
                     console.log('Error: ' + categories);
                 })
-        };
+        }
 
         function deleteCategory(id) {
             return $http.delete('/api/categories/' + id);
-        };
+        }
 
         function calculateTotals(categories, entries){
             var i;

@@ -26,6 +26,31 @@ angular.module('hhbApp')
         });
     };
 
+    // test search
+    $scope.searchApi = function(search) {
+
+      console.log('search api');
+      console.log(search);
+      Entries.search(function(entries) {
+        $scope.entries = entries;
+      });
+    };
+
+    // test search API
+    //$scope.searchApi = function(query) {
+    //  console.log('function called search api');
+    //  console.log(query);
+    //  $http.get('/api/entries/test/' + query)
+    //    .success(function(data) {
+    //      console.log('response from api');
+    //      console.log(data);
+    //    })
+    //    .error(function(data) {
+    //      console.log('Error: ' + data);
+    //    });
+    //
+    //}
+
 
     // delete all entries
     $scope.deleteEntries = function() {
