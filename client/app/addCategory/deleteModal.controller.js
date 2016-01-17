@@ -33,6 +33,9 @@ angular.module('hhbApp').controller('deleteCategoryCtrl', function ($scope, $uib
       .error(function (data) {
         console.log('Error: ' + data);
       });
+
+    //close the modal
+    $uibModalInstance.close();
   }
 
 
@@ -69,14 +72,13 @@ angular.module('hhbApp').controller('deleteCategoryCtrl', function ($scope, $uib
         console.log('Error: ' + data);
       });
     }
-  };
 
-
-  $scope.ok = function () {
-    //$uibModalInstance.close($scope.selected.item);
+    //close the modal
     $uibModalInstance.close();
-
   };
+
+
+
 
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
