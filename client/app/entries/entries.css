@@ -1,14 +1,28 @@
-.income {
-  background-color: green;
-}
-
-.expense {
-  background-color: #f5977d;
-
-}
-
-.add {background-color: palegreen}
+.add {background-color: palegreen;}
 
 .pointer {
   cursor: pointer;
 }
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
+  border-top: none;
+}
+
+tr:nth-child(odd) {
+  background: lightsteelblue;
+}
+
+tr:first-child {
+  background: cornflowerblue;
+  color: #FFFFFF
+}
+
+tr:first-child th:first-child{
+  border-top-left-radius: 10px;
+}
+
+tr:first-child th:last-child{
+  border-top-right-radius: 10px;
+}
+
+
