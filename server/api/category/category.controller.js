@@ -5,6 +5,7 @@
  * GET     /api/categories/:id          ->  show
  * PUT     /api/categories/:id          ->  update
  * DELETE  /api/categories/:id          ->  destroy
+ * GET     /api/categories/search/:query          ->  search
  */
 
 'use strict';
@@ -53,7 +54,7 @@ function removeEntity(res) {
     if (entity) {
       return entity.removeAsync()
         .then(() => {
-          res.status(204).end();
+          res.status(200).json(entity);
         });
     }
   };

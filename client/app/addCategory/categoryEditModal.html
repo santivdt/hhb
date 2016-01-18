@@ -1,19 +1,19 @@
 <div class="modal-header">
-  <h3 class="modal-title">Edit category {{category.title}}</h3>
+  <h3 class="modal-title">Delete category {{category.title | lowercase}}</h3>
 </div>
 <div class="modal-body">
-  What do you want to do with the entries in {{category.title}}?
+  What do you want to do with the entries in {{category.title | lowercase}}?
   <br>
   <div class="radio">
     <label>
-      <input type="radio" ng-model="changeCategory" value="delete"> Delete all entries in {{category.title}}
+      <input type="radio" ng-model="changeCategory" value="delete"> Delete all entries in {{category.title | lowercase}}
     </label>
   </div>
 
 
   <div class="radio">
     <label>
-      <input type="radio" ng-model="changeCategory" value="assign"> Assign all entries in {{category.title}} to different category
+      <input type="radio" ng-model="changeCategory" value="assign"> Assign all entries in {{category.title | lowercase}} to different category
     </label>
   </div>
   <div ng-show="changeCategory == 'assign'">
@@ -34,7 +34,6 @@
 </div>
 
 <div class="modal-footer">
-  <!--<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>-->
   <button ng-show="changeCategory == 'assign'" class="btn btn-primary" ng-click="assignCat(category)">Ok</button>
   <button ng-show="changeCategory == 'delete'" class="btn btn-primary" ng-click="deleteEntriesInCategory(category)">Ok</button>
   <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>

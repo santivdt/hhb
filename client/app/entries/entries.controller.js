@@ -18,8 +18,6 @@ angular.module('hhbApp')
     $scope.deleteEntry = function(id) {
       $http.delete('/api/entries/' + id)
         .success(function(data) {
-          $scope.entries.pop(data);
-          console.log(data);
         })
         .error(function(data) {
           console.log('Error: ' + data);

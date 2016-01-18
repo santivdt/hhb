@@ -7,8 +7,6 @@ angular.module('hhbApp').controller('deleteCategoryCtrl', function ($scope, $uib
 
   // delete all entries in specific category then delete category
   $scope.deleteEntriesInCategory = function (category) {
-
-
     if (category.used != 0) {
       //delete all the entries in the category
       for (var i = 0; i < entries.length; i++) {
@@ -27,17 +25,26 @@ angular.module('hhbApp').controller('deleteCategoryCtrl', function ($scope, $uib
     //delete the category
     categoriesService.deleteCategory(category._id)
       .success(function (data) {
-        $scope.categories.pop(data);
-        console.log(category.title + ' is sucessfully deleted. Hopefully you really wanted this ;)');
+
+        var index = arrayObjectIndexOf($scope.categories, data);
+        if (index > -1) {
+          $scope.categories.splice(index, 1);
+        }
+        $uibModalInstance.close($scope.categories);
       })
       .error(function (data) {
         console.log('Error: ' + data);
       });
-
-    //close the modal
-    $uibModalInstance.close();
   }
 
+  function arrayObjectIndexOf(arr, obj){
+    for(var i = 0; i < arr.length; i++){
+      if(angular.equals(arr[i], obj)){
+        return i;
+      }
+    };
+    return -1;
+  }
 
   //function to assign all entries of a cat to a different cat
   $scope.assignCat = function (oldCategory) {
@@ -61,7 +68,6 @@ angular.module('hhbApp').controller('deleteCategoryCtrl', function ($scope, $uib
         //$scope.calculateTotals();//TODO make service no make search api on categories
     }
 
-
     if ($scope.deleteOldCat){
       //delete old category
       categoriesService.deleteCategory(category._id)
@@ -76,9 +82,7 @@ angular.module('hhbApp').controller('deleteCategoryCtrl', function ($scope, $uib
     //close the modal
     $uibModalInstance.close();
   };
-
-
-
+  
 
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');

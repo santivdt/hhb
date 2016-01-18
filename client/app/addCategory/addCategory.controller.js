@@ -72,13 +72,11 @@ angular.module('hhbApp')
                   }
               }
             });
-            //
-            //modalInstance.result.then(function (selectedItem) {
-            //    console.log(selectedItem);
-            //    $scope.selected = selectedItem;
-            //}, function () {
-            //    $log.info('Modal dismissed at: ' + new Date());
-            //});
+
+
+          modalInstance.result.then(function (categories) {
+            $scope.categories = categories;
+          });
         };
 
         $scope.toggleAnimation = function () {
