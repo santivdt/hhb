@@ -1,4 +1,4 @@
-.add {background-color: palegreen;}
+.add {background-color: #f2ffe5;}
 
 .pointer {
   cursor: pointer;
@@ -9,7 +9,7 @@
 }
 
 tr:nth-child(odd) {
-  background: lightsteelblue;
+  background: #d8e6ff;
 }
 
 tr:first-child {
