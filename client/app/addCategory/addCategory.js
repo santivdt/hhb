@@ -9,8 +9,8 @@ angular.module('hhbApp')
             entries:  function($http){
                 return $http.get('/api/entries');
             },
-            categories: function(categoriesService) {
-                return categoriesService.getCategories();
+            categories: function($http) {
+                return $http.get('/api/categories');
             },
             used: function(categoriesService, categories, entries) {
                 return categoriesService.calculateTotals(categories.data, entries.data);
