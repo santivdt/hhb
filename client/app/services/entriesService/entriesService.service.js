@@ -6,6 +6,7 @@ angular.module('hhbApp')
     return {
       getEntries: getEntries,
       searchCategory: searchCategory,
+      searchDescription: searchDescription
     };
 
     function getEntries() {
@@ -14,5 +15,9 @@ angular.module('hhbApp')
     }
     function searchCategory(query) {
      return $http.get('/api/entries/searchCategory/' + query )
+    }
+
+    function searchDescription(query) {
+      return $http.get('/api/entries/search/' + query)
     }
 }]);

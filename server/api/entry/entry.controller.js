@@ -67,10 +67,10 @@ export function index(req, res) {
     .catch(handleError(res));
 }
 
-// Search entries from the DB exact match on description
+// Search entries from the DB on description
 export function search(req, res) {
   console.log(req.params);
-  Entry.findAsync({description: req.params.query})
+  Entry.findAsync({description: new RegExp(req.params.query, "i")})
     .then(responseWithResult(res))
     .catch(handleError(res));
 }
