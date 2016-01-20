@@ -3,21 +3,17 @@
 angular.module('hhbApp')
   .controller('EntriesCtrl', function ($scope, $http, $filter, entries, entriesService, $uibModal) {
     $scope.formData = {};
-    //$scope.checks = [
-    //  {$scope.dateCheck = true},
-    //  {$scope.amountCheck = true},
-    //  {$scope.descriptionCheck = true},
-    //  {$scope.categoryCheck = true},
-    //  {$scope.periodCheck = false}
-    //];
-    $scope.dateCheck = true;
-    $scope.amountCheck = true;
-    $scope.descriptionCheck = true;
-    $scope.categoryCheck = true;
+    // order of checks Date, Amount, Description, Category, Period
+    $scope.checks = [true, true, true, true, false];
+    console.log($scope.checks);
+    $scope.dateCheck = $scope.checks[0];
+    $scope.amountCheck = $scope.checks[1];
+    $scope.descriptionCheck = $scope.checks[2];
+    $scope.categoryCheck = $scope.checks[3];
+    $scope.periodCheck = $scope.checks[4];
     $scope.formData.date = new Date();
     $scope.formData.period = 'Monthly';
     $scope.formData.category = 'Food';
-    $scope.isCollapsed = false;
     $scope.entries = entries.data;
 
 
@@ -60,6 +56,8 @@ angular.module('hhbApp')
         });
     };
 
+
+    //Clear Search
     $scope.clearSearch = function() {
       return $scope.entries = entries.data;
     };
@@ -84,18 +82,20 @@ angular.module('hhbApp')
         templateUrl: '/app/entries/editColumns.html',
         controller: 'editColumnsCtrl',
         resolve: {
-          items: function () {
-            return $scope.items;
+          checks: function () {
+            return $scope.checks;
           }
         }
       });
 
       modalInstance.result.then(function (checks) {
-        $scope.dateCheck = checks[0];
-        $scope.amountCheck = checks[1];
-        $scope.descriptionCheck = checks[2];
-        $scope.categoryCheck = checks[3];
-        $scope.periodCheck = checks[4];
+        $scope.checks = checks;
+        console.log(checks, '<----checks from modal from entries controller');
+        $scope.dateCheck = $scope.checks[0];
+        $scope.amountCheck = $scope.checks[1];
+        $scope.descriptionCheck = $scope.checks[2];
+        $scope.categoryCheck = $scope.checks[3];
+        $scope.periodCheck = $scope.checks[4];
       });
     };
 

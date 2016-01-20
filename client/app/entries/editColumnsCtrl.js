@@ -1,15 +1,17 @@
-angular.module('hhbApp').controller('editColumnsCtrl', function ($scope, $uibModalInstance) {
-  $scope.dateCheck = true;
-  $scope.amountCheck = true;
-  $scope.descriptionCheck = true;
-  $scope.categoryCheck = false;
-  $scope.periodCheck = false;
+angular.module('hhbApp').controller('editColumnsCtrl', function ($scope, $uibModalInstance, checks) {
+  $scope.checks = checks;
+  console.log($scope.checks, 'scopechecks jaaa');
+  $scope.dateCheck = $scope.checks[0];
+  $scope.amountCheck = $scope.checks[1];
+  $scope.descriptionCheck = $scope.checks[2];
+  $scope.categoryCheck = $scope.checks[3];
+  $scope.periodCheck = $scope.checks[4];
 
 
   $scope.ok = function () {
-    $uibModalInstance.close(
-      //$scope.checks=[$scope.dateCheck, $scope.amountCheck, $scope.descriptionCheck, $scope.categoryCheck, $scope.periodCheck]
-    );
+    var checks=[$scope.dateCheck, $scope.amountCheck, $scope.descriptionCheck, $scope.categoryCheck, $scope.periodCheck];
+    console.log(checks, '<-----shit from the ok function when closing the modal');
+    $uibModalInstance.close(checks);
   };
 
   $scope.cancel = function () {
