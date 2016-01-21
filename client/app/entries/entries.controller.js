@@ -18,13 +18,11 @@ angular.module('hhbApp')
 
 
     // delete an entry
-    $scope.deleteEntry = function (id) {
+    $scope.deleteEntry = function(id) {
       $http.delete('/api/entries/' + id)
-        .success(function (data) {
-          $scope.entries.pop(data);
-          console.log(data);
+        .success(function(data) {
         })
-        .error(function (data) {
+        .error(function(data) {
           console.log('Error: ' + data);
         });
     };
@@ -69,7 +67,7 @@ angular.module('hhbApp')
           console.log('edit');
           console.log(data);
         })
-        .error(function (data) {
+        .error(function(data) {
           console.log('Error: ' + data);
         });
     };

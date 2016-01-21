@@ -14,7 +14,9 @@ angular.module('hhbApp', [
   'chart.js',
   'jsTag',
   'siyfion.sfTypeahead',
-  'ngTagsInput'
+  'ngTagsInput',
+  'ngCsv',
+  'ngTable'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

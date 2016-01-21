@@ -22,6 +22,7 @@
       <link rel="stylesheet" href="bower_components/nvd3/src/nv.d3.css" />
       <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css" />
       <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
+     <link rel="stylesheet" href="https://cdn.rawgit.com/esvit/ng-table/v1.0.0/dist/ng-table.min.css">
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -40,6 +41,7 @@
       <link rel="stylesheet" href="app/directives/modals/addEntryModal/addEntryModal.css">
       <link rel="stylesheet" href="app/entries/entries.css">
       <link rel="stylesheet" href="app/main/main.css">
+      <link rel="stylesheet" href="app/mambu/mambu.css">
       <link rel="stylesheet" href="app/scss/css/style.css">
       <link rel="stylesheet" href="components/footer/footer.css">
       <link rel="stylesheet" href="components/modal/modal.css">
@@ -114,7 +116,7 @@
       <script src="app/dash/dash.module.js"></script>
       <script src="components/auth/auth.module.js"></script>
       <script src="components/util/util.module.js"></script>
-      <script src="app/entries/entries.js"></script>
+      <script src="app/factories/categories/categories.service.js"></script>
       <script src="app/add/add.js"></script>
       <script src="app/addCategory/addCategory.controller.js"></script>
       <script src="app/addCategory/addCategory.js"></script>
@@ -134,8 +136,8 @@
       <script src="app/directives/modals/addEntryModal/addEntryModal.directive.js"></script>
       <script src="app/entries/editColumnsCtrl.js"></script>
       <script src="app/entries/entries.controller.js"></script>
+      <script src="app/entries/entries.js"></script>
       <script src="app/account/login/login.controller.js"></script>
-      <script src="app/factories/categories/categories.service.js"></script>
       <script src="app/filters/dateFilter/dateFilter.filter.js"></script>
       <script src="app/filters/keyValueFilter/keyValueFilter.filter.js"></script>
       <script src="app/filters/sumByKey/sumByKey.filter.js"></script>
@@ -143,6 +145,8 @@
       <script src="app/filters/sumRecordsWithValue/sumRecordsWithValue.filter.js"></script>
       <script src="app/main/main.controller.js"></script>
       <script src="app/main/main.js"></script>
+      <script src="app/mambu/mambu.controller.js"></script>
+      <script src="app/mambu/mambu.js"></script>
       <script src="app/services/entriesService/entriesService.service.js"></script>
       <script src="app/account/signup/signup.controller.js"></script>
       <script src="components/auth/auth.service.js"></script>
@@ -162,6 +166,10 @@
     <!-- endbuild -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.6/ng-csv.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.6/ng-csv.min.js"></script>
+    <script src="https://cdn.rawgit.com/esvit/ng-table/v1.0.0/dist/ng-table.js"></script>
+
 
   </body>
 </html>

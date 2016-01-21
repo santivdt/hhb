@@ -1,107 +1,63 @@
 <div class="container-fluid">
 
-<div class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-8">
-    <form class="form-inline">
-      <div class="form-group ">
-        <input class="form-control" id="category" placeholder="Add category" required ng-model="category.title"></input>
-      </div>
-      <button class="btn btn-default" ng-click="addCategory()">Add Category</button>
-    </form>
-    <br>
-    <button class="btn btn-default" data-toggle="modal" data-target="#deleteCategory">Edit categories</button>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <form class="form-inline">
+        <div class="form-group ">
+          <input class="form-control" id="category" placeholder="Add category" required ng-model="category.title"></input>
+        </div>
+        <button class="btn btn-default" ng-click="addCategory()">Add Category</button>
+      </form>
+      <br>
+    </div>
+    <div class="col-md-2"></div>
   </div>
-  <div class="col-md-2"></div>
-</div>
-<div class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-4">
-    <br><br>
-    <table class="table">
-      <tr>
-        <th>Categories</th>
-        <th>Used</th>
-        <th>&nbsp;</th>
-      </tr>
-      <tr ng-repeat="category in categories">
-        <td>{{category.title}}</td>
-        <td>{{category.used}}</td>
-        <td>
-          <span class="glyphicon  glyphicon-trash" ng-click="categoryToDelete = category.title" data-toggle="modal" data-target="#deleteCategory"></span>
-        </td>
-      </tr>
-    </table>
-    <button class="btn btn-danger" type="button" ng-click="deleteAllCategories()">
-      <span class="glyphicon glyphicon-trash"></span>
-      &nbsp;Delete all categories
-    </button>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+      <br><br>
+      <table class="table">
+        <tr>
+          <th>Categories</th>
+          <th>Used</th>
+          <th>&nbsp;</th>
+        </tr>
+        <tr ng-repeat="category in categories">
+          <td>{{category.title}}</td>
+          <td>{{category.used}}</td>
+          <td>
+            <span class="glyphicon  glyphicon-trash" ng-click="open(category)"></span>
+          </td>
+        </tr>
+      </table>
+      <button class="btn btn-danger" type="button" ng-click="deleteAllCategories()">
+        <span class="glyphicon glyphicon-trash"></span>
+        &nbsp;Delete all categories
+      </button>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-2">
+      <div ng-show="selected">Selection from a modal: {{ selected }}</div></div>
   </div>
-  <div class="col-md-4"></div>
-  <div class="col-md-2"></div>
-</div>
 
-</div>
+  </div>
+
+
+
+
 
 <!-- Modal to select what happens when deleting a category -->
 <div class="modal fade" id="deleteCategory" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Edit category</h4>
-            </div>
-            <div class="modal-body">
-                <form>
-                    What do you want to do with the entries in the category?
-                    <br>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" ng-model="formData.deleteAllEntries"> Delete all entries in category
-                        </label>
-                    </div>
-                    <div ng-show="formData.deleteAllEntries">
-                        Which category?
-                        <div class="form-group">
-                            <select class="form-control" ng-model="formData.categoryToDelete">
-                                <option ng-repeat="category in categories">{{category.title}}</option>
-                            </select>
-                            <br>
-                            <button class="btn btn-danger" ng-click="deleteEntriesInCategory(formData.categoryToDelete)" data-dismiss="modal" >Delete</button>
-                        </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit category</h4>
+      </div>
+      <div class="modal-body">
 
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" ng-model="changeCategory"> Assign all entries in specific to different category
-                    </label>
-                </div>
-                <div ng-show="changeCategory">
-                    <form class="form-inline">
-                        Assign all entries in
-                        <div class="form-group">
-                            <select class="form-control" ng-model="oldCategory">
-                                <option ng-repeat="category in categories">{{category.title}}</option>
-                            </select>
-                            to
-                            <select class="form-control" ng-model="newCategory">
-                                <option ng-repeat="category in categories">{{category.title}}</option>
-                            </select>
-                        </div>
-                    </form>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" ng-model="deleteOldCat">Do you want to delete the old category?
-                        </label>
-                    </div>
-                    <button class="btn btn-default" ng-click="assignCat(oldCategory, newCategory)" data-dismiss="modal">Go!</button>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            </div>
-        </div>
+      </div>
 
     </div>
-</div>
+  </div>
 
