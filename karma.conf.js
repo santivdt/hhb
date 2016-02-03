@@ -43,6 +43,7 @@ module.exports = function(config) {
       'client/bower_components/angular-typeahead/angular-typeahead.js',
       'client/bower_components/ng-tags-input/ng-tags-input.min.js',
       'client/bower_components/underscore/underscore.js',
+      'client/bower_components/ng-table/dist/ng-table.min.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'client/app/app.js',

@@ -97,6 +97,12 @@ angular.module('hhbApp')
       });
     };
 
+    //create header for export to csv
+    $scope.getHeader = function () {
+      console.log('getheader');
+      return ["id", "Description", "Category", "Amount", "Period", "V", "Date"]
+    };
+
 
     //to add en antry from the modal
     $scope.addEntry = function () {
